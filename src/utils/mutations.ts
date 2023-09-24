@@ -5,7 +5,7 @@ import { client } from "./graphql";
 export interface CreateTransactionRequestInput {
   orgId: string;
   walletId: string;
-  networkAssetId: string | null;
+  networkAssetId?: string | null;
   transactionData: NewTransactionRequestData;
 }
 
