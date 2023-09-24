@@ -14,6 +14,7 @@ const app = express();
 const port = 3000;
 
 import { setContext } from "@apollo/client/link/context";
+import { createKey, createWallet, organizationNetworks } from "./utils/mutations";
 
 const httpLink = createHttpLink({
   uri: process.env.LEVAIN_API_URL,
@@ -35,84 +36,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
-// Create keys on Levain
-async function createKey(input: any) {
-  const CREATE_KEY = gql`
-    mutation CreateKey($input: CreateKeyInput!) {
-      createKey(input: $input) {
-        keyId
-        name
-        publicKey
-      }
-    }
-  `;
-
-  const response = await client.mutate({
-    mutation: CREATE_KEY,
-    variables: { input },
-  });
-
-  return response.data.createKey;
-}
-
-// Create a wallet on Levain
-async function createWallet(input: any) {
-  const CREATE_WALLET = gql`
-    mutation CreateWallet($input: CreateWalletInput!) {
-      createWallet(input: $input) {
-        walletId
-        organizationNetworkId
-        organizationNetwork {
-          network {
-            protocolName
-            networkName
-          }
-        }
-        name
-        status
-        mainAddress
-      }
-    }
-  `;
-
-  const response = await client.mutate({
-    mutation: CREATE_WALLET,
-    variables: { input },
-  });
-
-  return response.data.createWallet;
-}
-
-// Query for organization network IDs
-async function organizationNetworks(input: any) {
-  const ORG_NETWORKS = gql`
-    query OrganizationNetworks($orgId: ID!) {
-      organization(orgId: $orgId) {
-        networks {
-          edges {
-            node {
-              organizationNetworkId
-              network {
-                networkId
-                identifier
-                protocolName
-                networkName
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const response = await client.query({
-    query: ORG_NETWORKS,
-    variables: { input },
-  });
-
-  return response.data.organization;
-}
 
 // Endpoint to create wallets programatically
 app.get("/create-wallet", async (req, res) => {

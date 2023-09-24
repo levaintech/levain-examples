@@ -187,3 +187,81 @@ export async function signTransactionRequest(input: any) {
 
   return response.data.signTransactionRequest;
 }
+
+// Create keys on Levain
+export async function createKey(input: any) {
+  const CREATE_KEY = gql`
+    mutation CreateKey($input: CreateKeyInput!) {
+      createKey(input: $input) {
+        keyId
+        name
+        publicKey
+      }
+    }
+  `;
+
+  const response = await client.mutate({
+    mutation: CREATE_KEY,
+    variables: { input },
+  });
+
+  return response.data.createKey;
+}
+
+// Create a wallet on Levain
+export async function createWallet(input: any) {
+  const CREATE_WALLET = gql`
+    mutation CreateWallet($input: CreateWalletInput!) {
+      createWallet(input: $input) {
+        walletId
+        organizationNetworkId
+        organizationNetwork {
+          network {
+            protocolName
+            networkName
+          }
+        }
+        name
+        status
+        mainAddress
+      }
+    }
+  `;
+
+  const response = await client.mutate({
+    mutation: CREATE_WALLET,
+    variables: { input },
+  });
+
+  return response.data.createWallet;
+}
+
+// Query for organization network IDs
+export async function organizationNetworks(input: any) {
+  const ORG_NETWORKS = gql`
+    query OrganizationNetworks($orgId: ID!) {
+      organization(orgId: $orgId) {
+        networks {
+          edges {
+            node {
+              organizationNetworkId
+              network {
+                networkId
+                identifier
+                protocolName
+                networkName
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await client.query({
+    query: ORG_NETWORKS,
+    variables: { input },
+  });
+
+  return response.data.organization;
+}
