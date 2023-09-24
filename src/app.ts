@@ -5,7 +5,6 @@ import walletRoute from "./api/create-wallet";
 import depositAddressRoute from "./api/generate-deposit-addresses";
 import txWith0xRoute from "./api//api-cosigning-custom-tx";
 
-
 dotenv.config();
 
 const app = express();
@@ -27,10 +26,8 @@ app.use(walletRoute);
 app.use(depositAddressRoute);
 app.use(txWith0xRoute);
 
-
-
 app.listen(port, () => {
   console.log(
-    `Demo service using Levain GraphQL APIs is running at http://localhost:${port}`
+    `Demo service using Levain GraphQL APIs is running at http://localhost:${port}`,
   );
 });

@@ -2,7 +2,11 @@ import express from "express";
 import { Wallet } from "ethers";
 import { encrypt } from "@soufflejs/crypto";
 import dotenv from "dotenv";
-import { createKey, createWallet, organizationNetworks } from "../utils/mutations";
+import {
+  createKey,
+  createWallet,
+  organizationNetworks,
+} from "../utils/mutations";
 
 dotenv.config();
 
@@ -16,7 +20,7 @@ router.get("/create-wallet", async (req, res) => {
     const mainKeyPair = Wallet.createRandom();
     const mainPrivateKeyEncrypted = await encrypt(
       password,
-      mainKeyPair.privateKey
+      mainKeyPair.privateKey,
     );
 
     // Create `Backup` key, but we don't need the private key, so please keep it safely offline
@@ -73,7 +77,8 @@ router.get("/create-wallet", async (req, res) => {
 
     // HTTP response
     res.status(200).json({
-      message: "Successfully created a wallet using your keys. Please go to https://app.levain.tech/ to see your wallet.",
+      message:
+        "Successfully created a wallet using your keys. Please go to https://app.levain.tech/ to see your wallet.",
     });
   } catch (error) {
     console.log(error);

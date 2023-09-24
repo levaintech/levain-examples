@@ -27,7 +27,7 @@ router.get("/process-tx", async (req, res) => {
           "0x-api-key": process.env.ZERO_EX_API_KEY as string,
           Accept: "application/json",
         },
-      }
+      },
     );
 
     const json = await response.json();
@@ -70,12 +70,12 @@ router.get("/process-tx", async (req, res) => {
 
     // This contains sensitive information: the encrypted private key. You will sign transactions using this key
     const apiCoSignerPrivateKey = JSON.parse(
-      fs.readFileSync("api-cosigner-private-key.json", "utf-8")
+      fs.readFileSync("api-cosigner-private-key.json", "utf-8"),
     );
 
     const privateKey = decrypt(
       process.env.LEVAIN_USER_SIGNING_KEY_PASSWORD as string,
-      apiCoSignerPrivateKey.encryptedPrivateKey
+      apiCoSignerPrivateKey.encryptedPrivateKey,
     );
 
     const signer = new ethers.SigningKey(privateKey);

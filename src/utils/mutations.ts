@@ -21,7 +21,9 @@ export interface NewSimpleMultiSigTransactionRequestData {
 }
 
 // Create a transaction request
-export async function createTransactionRequest(input: CreateTransactionRequestInput) {
+export async function createTransactionRequest(
+  input: CreateTransactionRequestInput,
+) {
   const CREATE_TRANSACTION_REQUEST = gql`
     mutation CreateTransactionRequest($input: CreateTransactionRequestInput!) {
       createTransactionRequest(input: $input) {
