@@ -1,41 +1,13 @@
 import express from "express";
 import { Wallet } from "ethers";
 import { encrypt } from "@soufflejs/crypto";
-import {
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-  gql,
-} from "@apollo/client/core";
 import dotenv from "dotenv";
-import { setContext } from "@apollo/client/link/context";
 import { createKey, createWallet, organizationNetworks } from "./utils/mutations";
 
 dotenv.config();
 
 const app = express();
 const port = 3000;
-
-const httpLink = createHttpLink({
-  uri: process.env.LEVAIN_API_URL,
-});
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = process.env.LEVAIN_API_ACCESS_TOKEN;
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
 
 // Endpoint to create wallets programatically
 app.get("/create-wallet", async (req, res) => {

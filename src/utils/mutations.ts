@@ -265,3 +265,25 @@ export async function organizationNetworks(input: any) {
 
   return response.data.organization;
 }
+
+// Create deposit addresses
+export async function createWalletDepositAddress(input: any) {
+  const CREATE_WALLET_DEPOSIT_ADDRESS = gql`
+    mutation CreateWalletDepositAddress(
+      $input: CreateWalletDepositAddressInput!
+    ) {
+      createWalletDepositAddress(input: $input) {
+        label
+        address
+        walletDepositAddressId
+      }
+    }
+  `;
+
+  const response = await client.mutate({
+    mutation: CREATE_WALLET_DEPOSIT_ADDRESS,
+    variables: { input },
+  });
+
+  return response.data.createWalletDepositAddress;
+}
