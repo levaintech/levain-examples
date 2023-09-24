@@ -2,23 +2,15 @@
   "name": "levain-graphql-examples",
   "version": "1.0.0",
   "description": "Example codes for creating your own services with Levain GraphQL APIs.",
+  "license": "MIT",
+  "author": "",
   "main": "src/app.ts",
   "scripts": {
-    "start": "nodemon src/app.ts",
     "format": "prettier --write .",
+    "start": "nodemon src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "@stickyjs/eslint-config": "^1.3.4",
-    "@stickyjs/prettier": "^1.3.4",
-    "@stickyjs/typescript": "^1.3.4",
-    "@types/crypto-js": "^4.1.1",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1"
-  },
+  "prettier": "@stickyjs/prettier",
   "dependencies": {
     "@apollo/client": "^3.8.1",
     "@soufflejs/crypto": "^0.3.0",
@@ -28,5 +20,14 @@
     "ethers": "^6.7.1",
     "express": "^4.18.2",
     "tiny-secp256k1": "^2.2.3"
+  },
+  "devDependencies": {
+    "@stickyjs/eslint-config": "^1.3.4",
+    "@stickyjs/prettier": "^1.3.4",
+    "@stickyjs/typescript": "^1.3.4",
+    "@types/crypto-js": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }

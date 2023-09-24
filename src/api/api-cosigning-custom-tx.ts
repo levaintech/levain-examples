@@ -1,31 +1,31 @@
-import express from "express";
-import fs from "fs";
-import { ethers } from "ethers";
-import dotenv from "dotenv";
-import { decrypt, prefixHex, stripHexPrefix } from "../utils/crypto";
+import express from 'express';
+import fs from 'fs';
+import { ethers } from 'ethers';
+import dotenv from 'dotenv';
+import { decrypt, prefixHex, stripHexPrefix } from '../utils/crypto';
 import {
   approveTransactionRequest,
   createTransactionDigests,
   createTransactionRequest,
   signTransactionRequest,
-} from "../utils/mutations";
+} from '../utils/mutations';
 
 dotenv.config();
 
 const router = express.Router();
 
 // Endpoint to process withdrawal
-router.get("/process-tx", async (req, res) => {
+router.get('/process-tx', async (req, res) => {
   try {
     // Call external API e.g. 0x to get tx builder
     // @ts-ignore
     const response = await fetch(
       `${process.env.ZERO_EX_API_BASE_URL}/swap/v1/quote?buyToken=0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984&sellToken=ETH&sellAmount=100000&excludedSources=Kyber`,
       {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "0x-api-key": process.env.ZERO_EX_API_KEY as string,
-          Accept: "application/json",
+          '0x-api-key': process.env.ZERO_EX_API_KEY as string,
+          Accept: 'application/json',
         },
       },
     );
@@ -54,8 +54,8 @@ router.get("/process-tx", async (req, res) => {
     });
 
     // Handle for errors during approvals
-    if (approveTxRequest.actionType !== "APPROVE") {
-      throw new Error("Transaction request not approved");
+    if (approveTxRequest.actionType !== 'APPROVE') {
+      throw new Error('Transaction request not approved');
     }
 
     // Create transaction digests using the requestId
@@ -66,12 +66,10 @@ router.get("/process-tx", async (req, res) => {
     });
 
     const digestToApiCosign = createTxDigests.digests[0].digest;
-    console.log("Digest to be API co-signed", digestToApiCosign);
+    console.log('Digest to be API co-signed', digestToApiCosign);
 
     // This contains sensitive information: the encrypted private key. You will sign transactions using this key
-    const apiCoSignerPrivateKey = JSON.parse(
-      fs.readFileSync("api-cosigner-private-key.json", "utf-8"),
-    );
+    const apiCoSignerPrivateKey = JSON.parse(fs.readFileSync('api-cosigner-private-key.json', 'utf-8'));
 
     const privateKey = decrypt(
       process.env.LEVAIN_USER_SIGNING_KEY_PASSWORD as string,
@@ -81,10 +79,9 @@ router.get("/process-tx", async (req, res) => {
     const signer = new ethers.SigningKey(privateKey);
 
     const signature = await signer.sign(prefixHex(digestToApiCosign));
-    const signatureWithoutV =
-      stripHexPrefix(signature.r) + stripHexPrefix(signature.s);
+    const signatureWithoutV = stripHexPrefix(signature.r) + stripHexPrefix(signature.s);
 
-    console.log("signatureWithoutV", signatureWithoutV);
+    console.log('signatureWithoutV', signatureWithoutV);
 
     // Submit the signed transaction to Levain to co-sign to get the other signature
     const signTxRequest = await signTransactionRequest({
@@ -97,12 +94,12 @@ router.get("/process-tx", async (req, res) => {
     // The actual signed transaction that can be broadcasted on-chain, signed by gas tank
     const signedTx = signTxRequest.transactionSigned;
     const provider = new ethers.JsonRpcProvider(process.env.PROVIDER_BASE_URL);
-    const tx = await provider.send("eth_sendRawTransaction", [signedTx]);
+    const tx = await provider.send('eth_sendRawTransaction', [signedTx]);
     console.log(`https://goerli.etherscan.io/tx/${tx}`);
 
     // HTTP response
     res.status(200).json({
-      message: "Successfully co-signed transaction using Levain GraphQL APIs",
+      message: 'Successfully co-signed transaction using Levain GraphQL APIs',
     });
   } catch (error) {
     console.log(error);

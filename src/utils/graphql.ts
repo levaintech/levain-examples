@@ -1,10 +1,6 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-} from "@apollo/client/core";
-import { setContext } from "@apollo/client/link/context";
-import dotenv from "dotenv";
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client/core';
+import { setContext } from '@apollo/client/link/context';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -19,7 +15,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });

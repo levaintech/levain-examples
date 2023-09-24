@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client/core";
+import { gql } from '@apollo/client/core';
 
-import { client } from "./graphql";
+import { client } from './graphql';
 
 export interface CreateTransactionRequestInput {
   orgId: string;
@@ -21,9 +21,7 @@ export interface NewSimpleMultiSigTransactionRequestData {
 }
 
 // Create a transaction request
-export async function createTransactionRequest(
-  input: CreateTransactionRequestInput,
-) {
+export async function createTransactionRequest(input: CreateTransactionRequestInput) {
   const CREATE_TRANSACTION_REQUEST = gql`
     mutation CreateTransactionRequest($input: CreateTransactionRequestInput!) {
       createTransactionRequest(input: $input) {
@@ -64,9 +62,7 @@ export async function createTransactionRequest(
 // Create a transaction request after passing further approval checks
 export async function approveTransactionRequest(input: any) {
   const APPROVE_TRANSACTION_REQUEST = gql`
-    mutation ApproveTransactionRequest(
-      $input: ApproveTransactionRequestInput!
-    ) {
+    mutation ApproveTransactionRequest($input: ApproveTransactionRequestInput!) {
       approveTransactionRequest(input: $input) {
         walletTransactionRequestId
         approverId
@@ -271,9 +267,7 @@ export async function organizationNetworks(input: any) {
 // Create deposit addresses
 export async function createWalletDepositAddress(input: any) {
   const CREATE_WALLET_DEPOSIT_ADDRESS = gql`
-    mutation CreateWalletDepositAddress(
-      $input: CreateWalletDepositAddressInput!
-    ) {
+    mutation CreateWalletDepositAddress($input: CreateWalletDepositAddressInput!) {
       createWalletDepositAddress(input: $input) {
         label
         address
