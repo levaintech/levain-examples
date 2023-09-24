@@ -22,7 +22,10 @@ router.get("/create-wallet", async (req, res) => {
     // Create `Backup` key, but we don't need the private key, so please keep it safely offline
     const backupKeyPair = Wallet.createRandom();
 
+    // This is what's being sent to Levain in encrypted form
     console.log(mainPrivateKeyEncrypted);
+
+    // These are what you should keep safely offline
     console.log(mainKeyPair.publicKey, mainKeyPair.privateKey);
     console.log(backupKeyPair.publicKey, backupKeyPair.privateKey);
 
@@ -55,7 +58,7 @@ router.get("/create-wallet", async (req, res) => {
       organizationNetworkId: "b60e5c14-59ce-4cea-ad34-309de16c12c6",
       description: "API-created Levain Wallet powered by SimpleMultiSig",
       type: "EvmContractSimpleMultiSig", // Alternatively, EvmContractSafe
-      name: "API-created Levain Wallet 2",
+      name: "API-created Levain Wallet 1",
       mainKey: {
         keyId: key1.keyId,
         passwordRecoveryKeyId: keyForWalletPassword.keyId,
@@ -66,7 +69,7 @@ router.get("/create-wallet", async (req, res) => {
       },
     });
 
-    // console.log(wallet);
+    console.log(wallet);
 
     // HTTP response
     res.status(200).json({
