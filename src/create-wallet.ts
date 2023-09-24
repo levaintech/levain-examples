@@ -8,13 +8,13 @@ import {
   gql,
 } from "@apollo/client/core";
 import dotenv from "dotenv";
+import { setContext } from "@apollo/client/link/context";
+import { createKey, createWallet, organizationNetworks } from "./utils/mutations";
+
 dotenv.config();
 
 const app = express();
 const port = 3000;
-
-import { setContext } from "@apollo/client/link/context";
-import { createKey, createWallet, organizationNetworks } from "./utils/mutations";
 
 const httpLink = createHttpLink({
   uri: process.env.LEVAIN_API_URL,
