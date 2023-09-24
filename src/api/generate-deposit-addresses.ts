@@ -1,13 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
-import { createWalletDepositAddress } from "../utils/mutations";
+import express from 'express';
+import dotenv from 'dotenv';
+import { createWalletDepositAddress } from '../utils/mutations';
 
 dotenv.config();
 
 const router = express.Router();
 
 // Endpoint to pre-farm deposit addresses
-router.get("/deposit-addresses", async (req, res) => {
+router.get('/deposit-addresses', async (req, res) => {
   try {
     const walletId = req.query.walletId;
 
@@ -19,7 +19,7 @@ router.get("/deposit-addresses", async (req, res) => {
         orgId: process.env.LEVAIN_ORG_ID as string,
         walletId: walletId as string,
         label: `user-id-${randomUserId}`,
-        caip2Uri: "",
+        caip2Uri: '',
       });
       console.log(depositAddress);
 
@@ -28,7 +28,7 @@ router.get("/deposit-addresses", async (req, res) => {
 
     // HTTP response
     res.status(200).json({
-      message: "Successfully generated deposit addresses.",
+      message: 'Successfully generated deposit addresses.',
       depositAddresses,
     });
   } catch (error) {

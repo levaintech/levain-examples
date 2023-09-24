@@ -1,16 +1,21 @@
-import express from "express";
-import fs from "fs";
-import { ethers } from "ethers";
-import dotenv from "dotenv";
-import { decrypt, prefixHex, stripHexPrefix } from "../utils/crypto";
-import { approveTransactionRequest, createTransactionDigests, createTransactionRequest, signTransactionRequest } from "../utils/mutations";
+import express from 'express';
+import fs from 'fs';
+import { ethers } from 'ethers';
+import dotenv from 'dotenv';
+import { decrypt, prefixHex, stripHexPrefix } from '../utils/crypto';
+import {
+  approveTransactionRequest,
+  createTransactionDigests,
+  createTransactionRequest,
+  signTransactionRequest,
+} from '../utils/mutations';
 
 dotenv.config();
 
 const router = express.Router();
 
 // Endpoint to process withdrawal
-router.get("/process-withdrawal", async (req, res) => {
+router.get('/process-withdrawal', async (req, res) => {
   try {
     /*
      * The following checks are not implemented in this sample code, but should be implemented in production:
@@ -29,14 +34,14 @@ router.get("/process-withdrawal", async (req, res) => {
     const createTxRequest = await createTransactionRequest({
       orgId: process.env.LEVAIN_ORG_ID as string,
       walletId: process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string,
-      networkAssetId: "cdfef64e-d040-4f1b-bc71-5955d0442305", // Goerli Ether on Ethereum Goerli Testnet
+      networkAssetId: 'cdfef64e-d040-4f1b-bc71-5955d0442305', // Goerli Ether on Ethereum Goerli Testnet
       transactionData: {
         // Wallets created using SimpleMultiSig.sol must use simpleMultiSig -- Safe implementation will be announced soon
         simpleMultiSig: {
           destination: withdrawalAddress as string,
-          value: "150000000000000", // Withdrawal amount in wei
-          data: "0x",
-          gasLimit: "21000",
+          value: '150000000000000', // Withdrawal amount in wei
+          data: '0x',
+          gasLimit: '21000',
         },
       },
     });
@@ -47,8 +52,8 @@ router.get("/process-withdrawal", async (req, res) => {
     });
 
     // Handle for errors during approvals
-    if (approveTxRequest.actionType !== "APPROVE") {
-      throw new Error("Transaction request not approved");
+    if (approveTxRequest.actionType !== 'APPROVE') {
+      throw new Error('Transaction request not approved');
     }
 
     // Create transaction digests using the requestId
@@ -59,25 +64,22 @@ router.get("/process-withdrawal", async (req, res) => {
     });
 
     const digestToApiCosign = createTxDigests.digests[0].digest;
-    console.log("Digest to be API co-signed", digestToApiCosign);
+    console.log('Digest to be API co-signed', digestToApiCosign);
 
     // This contains sensitive information: the encrypted private key. You will sign transactions using this key
-    const apiCoSignerPrivateKey = JSON.parse(
-      fs.readFileSync("api-cosigner-private-key.json", "utf-8")
-    );
+    const apiCoSignerPrivateKey = JSON.parse(fs.readFileSync('api-cosigner-private-key.json', 'utf-8'));
 
     const privateKey = decrypt(
       process.env.LEVAIN_USER_SIGNING_KEY_PASSWORD as string,
-      apiCoSignerPrivateKey.encryptedPrivateKey
+      apiCoSignerPrivateKey.encryptedPrivateKey,
     );
 
     const signer = new ethers.SigningKey(privateKey);
 
     const signature = await signer.sign(prefixHex(digestToApiCosign));
-    const signatureWithoutV =
-      stripHexPrefix(signature.r) + stripHexPrefix(signature.s);
+    const signatureWithoutV = stripHexPrefix(signature.r) + stripHexPrefix(signature.s);
 
-    console.log("signatureWithoutV", signatureWithoutV);
+    console.log('signatureWithoutV', signatureWithoutV);
 
     // Submit the signed transaction to Levain to co-sign to get the other signature
     const signTxRequest = await signTransactionRequest({
@@ -90,12 +92,12 @@ router.get("/process-withdrawal", async (req, res) => {
     // The actual signed transaction that can be broadcasted on-chain, signed by gas tank
     const signedTx = signTxRequest.transactionSigned;
     const provider = new ethers.JsonRpcProvider(process.env.PROVIDER_BASE_URL);
-    const tx = await provider.send("eth_sendRawTransaction", [signedTx]);
+    const tx = await provider.send('eth_sendRawTransaction', [signedTx]);
     console.log(`https://goerli.etherscan.io/tx/${tx}`);
 
     // HTTP response
     res.status(200).json({
-      message: "Successfully co-signed transaction using Levain GraphQL APIs",
+      message: 'Successfully co-signed transaction using Levain GraphQL APIs',
       tx: tx,
       etherscanTx: `https://goerli.etherscan.io/tx/${tx}`,
     });

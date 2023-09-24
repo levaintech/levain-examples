@@ -1,17 +1,17 @@
-import * as CryptoJS from "crypto-js";
-import { sha256 } from "@noble/hashes/sha256";
+import * as CryptoJS from 'crypto-js';
+import { sha256 } from '@noble/hashes/sha256';
 
 // To be removed later on when such functions are done by Levain GraphQL API instead
 export function prefixHex(str: string): string {
-  return str.startsWith("0x") ? str : `0x${str}`;
+  return str.startsWith('0x') ? str : `0x${str}`;
 }
 
 export function stripHexPrefix(str: string): string {
-  return str.startsWith("0x") ? str.slice(2) : str;
+  return str.startsWith('0x') ? str.slice(2) : str;
 }
 
 // Read and decrypt the encrypted private key (i.e. the user signing key) hosted locally on this service
-const AES_256_CBC = "AES_256_CBC";
+const AES_256_CBC = 'AES_256_CBC';
 
 /**
  * Key derivation spec we arbitrarily set and considered secured.
@@ -20,8 +20,8 @@ const AES_256_CBC = "AES_256_CBC";
  * @WARNING reducing this configuration directly reduce password brute force difficulty.
  */
 
-const HASHER = "sha256";
-const PBKDF2 = "pbkdf2";
+const HASHER = 'sha256';
+const PBKDF2 = 'pbkdf2';
 const KEY_SIZE = 8; // words = 256 bits
 const HASH_ITER = 10_000;
 
@@ -37,9 +37,9 @@ export interface CipherBlob {
 }
 
 function dSHA256(data: string): string {
-  const buf = Buffer.from(data, "utf-8");
+  const buf = Buffer.from(data, 'utf-8');
   const dSHA = Buffer.from(sha256(sha256(buf)));
-  return dSHA.toString("hex").slice(0, 16);
+  return dSHA.toString('hex').slice(0, 16);
 }
 
 /**
@@ -50,15 +50,10 @@ function dSHA256(data: string): string {
  * @returns {string} utf-8 encoded string, plain text before encryption.
  */
 export function decrypt(password: string, cipherBlob: CipherBlob): string {
-  const { cipher, keyDerivation, keyHasher, cipherText, iv, salt, hash } =
-    cipherBlob;
+  const { cipher, keyDerivation, keyHasher, cipherText, iv, salt, hash } = cipherBlob;
 
-  if (
-    cipher !== AES_256_CBC ||
-    keyDerivation !== PBKDF2 ||
-    keyHasher !== HASHER
-  ) {
-    throw new Error("Unexpected cipher specification.");
+  if (cipher !== AES_256_CBC || keyDerivation !== PBKDF2 || keyHasher !== HASHER) {
+    throw new Error('Unexpected cipher specification.');
   }
 
   const pw = CryptoJS.enc.Utf8.parse(password);
@@ -77,7 +72,7 @@ export function decrypt(password: string, cipherBlob: CipherBlob): string {
 
   // Password verification by checking plain secret with known hash of true secret
   if (dSHA256(password) !== hash) {
-    throw new Error("Invalid password");
+    throw new Error('Invalid password');
   }
 
   // This will occassionally run into error with Malformed UTF-8 error for invalid password
