@@ -2,7 +2,6 @@ import {
   ApolloClient,
   InMemoryCache,
   createHttpLink,
-  gql,
 } from "@apollo/client/core";
 import { setContext } from "@apollo/client/link/context";
 import dotenv from "dotenv";
