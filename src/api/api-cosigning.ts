@@ -2,16 +2,15 @@ import express from "express";
 import fs from "fs";
 import { ethers } from "ethers";
 import dotenv from "dotenv";
-import { decrypt, prefixHex, stripHexPrefix } from "./utils/crypto";
-import { approveTransactionRequest, createTransactionDigests, createTransactionRequest, signTransactionRequest } from "./utils/mutations";
+import { decrypt, prefixHex, stripHexPrefix } from "../utils/crypto";
+import { approveTransactionRequest, createTransactionDigests, createTransactionRequest, signTransactionRequest } from "../utils/mutations";
 
 dotenv.config();
 
-const app = express();
-const port = 3000;
+const router = express.Router();
 
 // Endpoint to process withdrawal
-app.get("/process-withdrawal", async (req, res) => {
+router.get("/process-withdrawal", async (req, res) => {
   try {
     /*
      * The following checks are not implemented in this sample code, but should be implemented in production:
@@ -106,8 +105,4 @@ app.get("/process-withdrawal", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(
-    `Demo service using Levain GraphQL APIs is running at http://localhost:${port}`
-  );
-});
+export default router;

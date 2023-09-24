@@ -2,15 +2,14 @@ import express from "express";
 import { Wallet } from "ethers";
 import { encrypt } from "@soufflejs/crypto";
 import dotenv from "dotenv";
-import { createKey, createWallet, organizationNetworks } from "./utils/mutations";
+import { createKey, createWallet, organizationNetworks } from "../utils/mutations";
 
 dotenv.config();
 
-const app = express();
-const port = 3000;
+const router = express.Router();
 
 // Endpoint to create wallets programatically
-app.get("/create-wallet", async (req, res) => {
+router.get("/create-wallet", async (req, res) => {
   try {
     // Create and encrypt `Main` key, though we recommend you to already have your offline generation of keys elsewhere
     const password = "CakeCEC@1234";
@@ -23,15 +22,9 @@ app.get("/create-wallet", async (req, res) => {
     // Create `Backup` key, but we don't need the private key, so please keep it safely offline
     const backupKeyPair = Wallet.createRandom();
 
-    // console.log(mainPrivateKeyEncrypted);
-    // console.log(mainKeyPair.publicKey, mainKeyPair.privateKey);
-    // console.log(backupKeyPair.publicKey, backupKeyPair.privateKey);
-
-    const orgNetworks = await organizationNetworks({
-      orgId: process.env.LEVAIN_ORG_ID as string,
-    });
-
-    console.log(orgNetworks);
+    console.log(mainPrivateKeyEncrypted);
+    console.log(mainKeyPair.publicKey, mainKeyPair.privateKey);
+    console.log(backupKeyPair.publicKey, backupKeyPair.privateKey);
 
     // Submit both public keys to Levain
     const key1 = await createKey({
@@ -62,7 +55,7 @@ app.get("/create-wallet", async (req, res) => {
       organizationNetworkId: "b60e5c14-59ce-4cea-ad34-309de16c12c6",
       description: "API-created Levain Wallet powered by SimpleMultiSig",
       type: "EvmContractSimpleMultiSig", // Alternatively, EvmContractSafe
-      name: "API-created Levain Wallet 1",
+      name: "API-created Levain Wallet 2",
       mainKey: {
         keyId: key1.keyId,
         passwordRecoveryKeyId: keyForWalletPassword.keyId,
@@ -85,8 +78,4 @@ app.get("/create-wallet", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(
-    `Demo service using Levain GraphQL APIs is running at http://localhost:${port}`
-  );
-});
+export default router;

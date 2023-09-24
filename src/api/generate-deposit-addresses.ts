@@ -1,14 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
-import { createWalletDepositAddress } from "./utils/mutations";
+import { createWalletDepositAddress } from "../utils/mutations";
 
 dotenv.config();
 
-const app = express();
-const port = 3000;
+const router = express.Router();
 
 // Endpoint to pre-farm deposit addresses
-app.get("/deposit-addresses", async (req, res) => {
+router.get("/deposit-addresses", async (req, res) => {
   try {
     const walletId = req.query.walletId;
 
@@ -38,8 +37,4 @@ app.get("/deposit-addresses", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(
-    `Demo service using Levain GraphQL APIs is running at http://localhost:${port}`
-  );
-});
+export default router;
