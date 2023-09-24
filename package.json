@@ -2,7 +2,7 @@
   "name": "levain-graphql-examples",
   "version": "1.0.0",
   "description": "Example codes for creating your own services with Levain GraphQL APIs.",
-  "main": "src/withdrawal.ts",
+  "main": "src/app.ts",
   "scripts": {
     "start": "nodemon src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
