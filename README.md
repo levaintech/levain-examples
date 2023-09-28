@@ -1,47 +1,24 @@
-# Levain GraphQL Examples
+<p align="center">
+  <a href="https://levain.tech">
+    <img src=".github/levain-logo.png" height="96">
+    <h3 align="center">Levain Examples</h3>
+  </a>
+</p>
 
-This repository contains examples of how to use the [Levain GraphQL API](https://developer.levain.tech/).
+Our curated collection of examples and solutions. Use these starter patterns to build your own robust and scalable
+crypto applications to streamline your development process.
 
-## Setup
+[//]: # '## Levain Templates'
+[//]: #
+[//]: # '## Adding & Managing Templates'
 
-### Install dependencies
+## Read the Docs
 
-```bash
-npm install
-```
+Levain examples are built on top of the Levain APIs. To learn more about the Levain APIs, check out
+the [Levain Developer Docs](https://developer.levain.tech).
 
-### Configure environment variables
+## Provide Feedback
 
-You'll need to configure the environment variables used in the examples. To do so, copy the `.env.example` file to `.env` and fill in the values. For API access tokens, you can get them from [Levain](https://app.levain.tech/).
-
-```bash
-cp .env.example .env
-```
-
-## Examples
-
-We have the following demos on how you can build your own services to interact with Levain. While this demo app is built with Express with TypeScript, you can use any language or framework to interact with the Levain GraphQL API so long as you can make requests with GraphQL.
-
-- [Create a Levain Wallet](./src/api/create-wallet.ts) programmatically, where you can generate your own keys, bring them onto Levain for the wallet creation. This will be entirely self-managed, and **you will be responsible for your own backup procedures**.
-- [Generate deposit addresses](./src/api/generate-deposit-addresses.ts) where you can generate deposit addresses on a specific Levain Wallet, to issue them to your own users.
-- [Create a transaction via an API co-signer](./src/api/api-cosigning.ts) programmatically, where you can create a transaction to send funds from a Levain Wallet to a destination address through an API co-signer service with an encrypted private key.
-- [Create a swap using 0x API and then sign via Levain](./src/api/api-cosigning.ts) programmatically, where you can create a transaction to send funds from a Levain Wallet to a destination address through an API co-signer service with an encrypted private key.
-
-### Run
-
-To run the examples, you can run the following command:
-
-```bash
-npm run start
-```
-
-To access the examples, you'll have to access the following URLs:
-
-- _Create a Levain Wallet_ at `http://localhost:3000/create-wallet`
-- _Generate deposit addresses_ at `http://localhost:3000/generate-deposit-addresses`
-- _Create a transaction via an API co-signer_ at `http://localhost:3000/process-withdrawal?address=0xWhitelistedAddress`
-- _Create a swap using 0x API and then sign via Levain_ at `http://localhost:3000/process-tx`
-
-## License
-
-MIT
+- If you believe you have found a bug, please open an issue with detailed information on how to reproduce it.
+- If you have any feedback or suggestions, feel free to open an issue within this repository or reach out to your
+  Account Manager.

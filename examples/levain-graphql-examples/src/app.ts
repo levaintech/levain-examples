@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import apiCosigningRoute from './api/api-cosigning';
 import walletRoute from './api/create-wallet';
 import depositAddressRoute from './api/generate-deposit-addresses';
-import txWith0xRoute from './api//api-cosigning-custom-tx';
+import txWith0xRoute from './api/api-cosigning-custom-tx';
 
 dotenv.config();
 

@@ -1,0 +1,10 @@
+.husky
+.idea
+.vscode
+.contented
+.next
+.turbo
+node_modules
+dist
+pnpm-lock.yaml
+generated/
