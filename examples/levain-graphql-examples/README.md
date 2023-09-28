@@ -22,10 +22,10 @@ cp .env.example .env
 
 We have the following demos on how you can build your own services to interact with Levain. While this demo app is built with Express with TypeScript, you can use any language or framework to interact with the Levain GraphQL API so long as you can make requests with GraphQL.
 
-- [Create a Levain Wallet](./src/api/create-wallet.ts) programmatically, where you can generate your own keys, bring them onto Levain for the wallet creation. This will be entirely self-managed, and **you will be responsible for your own backup procedures**.
-- [Generate deposit addresses](./src/api/generate-deposit-addresses.ts) where you can generate deposit addresses on a specific Levain Wallet, to issue them to your own users.
-- [Create a transaction via an API co-signer](./src/api/api-cosigning.ts) programmatically, where you can create a transaction to send funds from a Levain Wallet to a destination address through an API co-signer service with an encrypted private key.
-- [Create a swap using 0x API and then sign via Levain](./src/api/api-cosigning.ts) programmatically, where you can create a transaction to send funds from a Levain Wallet to a destination address through an API co-signer service with an encrypted private key.
+- [Create a Levain Wallet](srcpi/create-wallet.ts) programmatically, where you can generate your own keys, bring them onto Levain for the wallet creation. This will be entirely self-managed, and **you will be responsible for your own backup procedures**.
+- [Generate deposit addresses](srcpi/generate-deposit-addresses.ts) where you can generate deposit addresses on a specific Levain Wallet, to issue them to your own users.
+- [Create a transaction via an API co-signer](srcpi/api-cosigning.ts) programmatically, where you can create a transaction to send funds from a Levain Wallet to a destination address through an API co-signer service with an encrypted private key.
+- [Create a swap using 0x API and then sign via Levain](srcpi/api-cosigning.ts) programmatically, where you can create a transaction to send funds from a Levain Wallet to a destination address through an API co-signer service with an encrypted private key.
 
 ### Run
 
