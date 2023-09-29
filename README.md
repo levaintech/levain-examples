@@ -8,9 +8,21 @@
 Our curated collection of examples and solutions. Use these starter patterns to build your own robust and scalable
 crypto applications to streamline your development process.
 
-[//]: # '## Levain Templates'
-[//]: #
-[//]: # '## Adding & Managing Templates'
+## Levain Templates
+
+Levain templates are a collection of pre-built use cases that can be used to quickly create a new project from the
+command line or within the Levain Launchpad (https://app.levain.tech).
+
+### For Levainians
+
+[//]: # '#### Adding & Managing Examples (https://examples.levain.dev)'
+
+#### Adding & Managing Templates
+
+Examples (`./examples/*`) that have front matter and `template:` configured will be compatible with the Levain Launchpad
+launcher.
+This means that you can create a new project from the Levain Launchpad and select the example you want to start with
+after whitelisting the example.
 
 ## Read the Docs
 
