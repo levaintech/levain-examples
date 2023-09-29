@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "write": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "generate": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "build": {
+      "inputs": ["tsconfig.json", "tsconfig.build.json", "src/**"],
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    }
+  }
+}

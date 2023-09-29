@@ -1,0 +1,9 @@
+{
+  "extends": ["//"],
+  "pipeline": {
+    "build": {
+      "inputs": ["contented.config.mjs", "*/README.md"],
+      "outputs": ["dist/**"]
+    }
+  }
+}

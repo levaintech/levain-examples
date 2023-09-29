@@ -1,0 +1,17 @@
+{
+  "name": "@levain-examples/examples",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "contented build",
+    "write": "contented generate --watch"
+  },
+  "devDependencies": {
+    "@contentedjs/contented": "^6.0.0"
+  }
+}
