@@ -4,9 +4,7 @@ description: Examples of how to use the Levain GraphQL API to build your own ser
 framework: Express
 ---
 
-# Levain GraphQL Examples
-
-This repository contains examples of how to use the [Levain GraphQL API](https://developer.levain.tech/).
+Examples of how to use the [Levain GraphQL API](https://developer.levain.tech/).
 
 ## Setup
 
