@@ -2,6 +2,7 @@
 title: NeoBank
 description: Accept deposits, forward deposits to a omnibus wallet, and withdraw funds from the omnibus wallet.
 framework: Next.js
+publisher: Levain
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped

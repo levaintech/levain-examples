@@ -2,6 +2,7 @@
 title: Levain GraphQL Examples
 description: Examples of how to use the Levain GraphQL API to build your own services.
 framework: Express
+publisher: Levain
 ---
 
 Examples of how to use the [Levain GraphQL API](https://developer.levain.tech/).

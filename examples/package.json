@@ -12,6 +12,7 @@
     "write": "contented generate --watch"
   },
   "devDependencies": {
-    "@contentedjs/contented": "^6.0.0"
+    "@contentedjs/contented": "^6.2.0",
+    "@contentedjs/contented-pipeline-md": "^6.2.0"
   }
 }
