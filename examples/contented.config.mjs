@@ -17,8 +17,14 @@ import {
 
 /** @type {import('@contentedjs/contented').ContentedConfig} */
 const config = {
+  preview: {
+    name: 'Levain Examples Frontmatter',
+    url: 'https://examples-frontmatter.levain.app',
+    github: {
+      url: 'https://github.com/levaintech/levain-examples',
+    },
+  },
   processor: {
-    outDir: 'dist',
     pipelines: [
       {
         type: 'Example',
@@ -61,11 +67,17 @@ const config = {
             type: 'object',
             required: false,
           },
+          editOnGitHubLink: {
+            type: 'string',
+            resolve: (_, { file }) => {
+              return `https://github.com/levaintech/levain-examples/edit/main/examples/${file.data.contented.filePath}`;
+            },
+          },
         },
-        transform: (fileContent, filePath) => {
+        transform: (fileContent) => {
           return {
             ...fileContent,
-            path: filePath.replace(/\/README\.md$/, ''),
+            path: fileContent.path.replace(/\/readme$/, ''),
             sections: [],
             headings: [],
           };

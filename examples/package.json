@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "contented build",
+    "generate": "contented generate",
     "write": "contented generate --watch"
   },
   "devDependencies": {

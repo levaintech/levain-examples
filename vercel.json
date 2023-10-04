@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install",
+  "buildCommand": "turbo run generate --filter=./examples",
+  "outputDirectory": "examples/.contented/.preview/out/",
+  "framework": null
+}
