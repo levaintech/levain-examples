@@ -19,10 +19,11 @@ command line or within the Levain Launchpad (https://app.levain.tech).
 
 #### Adding & Managing Templates
 
-Examples (`./examples/*`) that have front matter and `template:` configured will be compatible with the Levain Launchpad
+Examples (`./examples/*`) that have frontmatter and `template:` configured will be compatible with the Levain Launchpad
 launcher.
 This means that you can create a new project from the Levain Launchpad and select the example you want to start with
 after whitelisting the example.
+For more information on the available frontmatter options, see the `./examples/contented.config.mjs` file.
 
 ## Read the Docs
 
