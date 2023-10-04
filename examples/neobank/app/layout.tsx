@@ -7,9 +7,7 @@ export const metadata: Metadata = {
   description: 'A banking app built with Levain, Next.js and Tailwind CSS.',
 };
 
-export default function RootLayout(props: {
-  children: ReactNode
-}): ReactElement {
+export default function RootLayout(props: { children: ReactNode }): ReactElement {
   return (
     <html lang="en">
       <body>{props.children}</body>

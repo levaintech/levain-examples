@@ -15,6 +15,9 @@
       "inputs": ["tsconfig.json", "tsconfig.build.json", "src/**"],
       "outputs": ["dist/**"],
       "dependsOn": ["^build"]
+    },
+    "lint": {
+      "outputs": []
     }
   }
 }
