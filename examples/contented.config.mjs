@@ -29,8 +29,11 @@ const config = {
       {
         type: 'Example',
         pattern: '*/README.md',
+        /**
+         * To reduce complexity,
+         * only enable a subset of plugins for levain-examples to keep the authoring experience simple.
+         */
         processor: MarkdownPipeline.withProcessor((processor) => {
-          // Only enable a subset of plugins for levain-examples to keep the authoring experience simple.
           processor
             .use(remarkGfm)
             .use(remarkFrontmatter)
@@ -47,26 +50,47 @@ const config = {
             .use(rehypeStringify);
         }),
         fields: {
+          /**
+           * Title of the example.
+           */
           title: {
             type: 'string',
             required: true,
           },
+          /**
+           * Description of the example, this will be used as the meta-description and og:description.
+           */
           description: {
             type: 'string',
             required: true,
           },
+          /**
+           * Metadata framework to allow filtering by framework.
+           * This is technology/framework used in the example, e.g. Next.js, Gatsby, etc.
+           */
           framework: {
             type: 'string',
             required: true,
           },
+          /**
+           * Metadata publisher to allow filtering by publisher.
+           * For Levainians this is "Levain", this is your company name or github username.
+           */
           publisher: {
             type: 'string',
             required: true,
           },
+          /**
+           * Template Object for use within Levain Launchpad.
+           */
           template: {
             type: 'object',
             required: false,
           },
+          /**
+           * Auto-generated link to edit the example on GitHub.
+           * You can ignore this field since it's auto-generated.
+           */
           editOnGitHubLink: {
             type: 'string',
             resolve: (_, { file }) => {
