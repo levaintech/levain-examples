@@ -2,6 +2,7 @@
   "name": "@levain-examples/project",
   "private": true,
   "scripts": {
+    "build": "turbo run build",
     "format": "prettier --write .",
     "lint": "turbo run lint -- --fix",
     "prepare": "husky install"
