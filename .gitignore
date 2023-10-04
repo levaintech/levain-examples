@@ -14,7 +14,7 @@
 .yarn/*
 .pnp.*
 node_modules
-package-lock.json
+/package-lock.json
 pnpm-lock.yaml
 
 # debug
