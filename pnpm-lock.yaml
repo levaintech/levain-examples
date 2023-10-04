@@ -36,6 +36,8 @@ importers:
         specifier: ^6.2.0
         version: 6.2.0
 
+  packages/create-levain-app: {}
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
