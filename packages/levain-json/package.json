@@ -1,0 +1,17 @@
+{
+  "name": "levain-json",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "url": "git+https://github.com/levaintech/levain-examples"
+  },
+  "files": [
+    "schema.json"
+  ],
+  "scripts": {
+    "typescript-json-schema": "typescript-json-schema LevainJson.ts LevainJson -o schema.json"
+  },
+  "devDependencies": {
+    "typescript-json-schema": "^0.61.0"
+  }
+}
