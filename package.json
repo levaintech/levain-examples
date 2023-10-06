@@ -3,9 +3,12 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "clean": "turbo run clean",
     "format": "prettier --write .",
     "lint": "turbo run lint -- --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "turbo run test",
+    "write": "turbo run write"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"

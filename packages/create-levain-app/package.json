@@ -2,7 +2,51 @@
   "name": "create-levain-app",
   "version": "0.0.0",
   "private": false,
+  "description": "Create a new project with Levain quickly.",
   "repository": {
     "url": "git+https://github.com/levaintech/levain-examples"
+  },
+  "bin": "cli.js",
+  "files": [
+    "cli.js",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b ./tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "lint": "eslint .",
+    "test:bin": "turbo run build && node cli.js"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "@stickyjs"
+    ],
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "dependencies": {
+    "@levain-examples/examples": "workspace:*",
+    "@types/pacote": "^11.1.6",
+    "pacote": "^17.0.4",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.5",
+    "@types/validate-npm-package-name": "^4.0.0"
   }
 }

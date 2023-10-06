@@ -1,0 +1,7 @@
+{
+  "extends": "@stickyjs/typescript",
+  "compilerOptions": {
+    "rootDir": "./",
+    "resolveJsonModule": true
+  }
+}

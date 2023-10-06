@@ -14,6 +14,8 @@ import {
   remarkParse,
   remarkRehype,
 } from '@contentedjs/contented-pipeline-md';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 /** @type {import('@contentedjs/contented').ContentedConfig} */
 const config = {
@@ -86,6 +88,22 @@ const config = {
           template: {
             type: 'object',
             required: false,
+            resolve: async (value, context) => {
+              if (!value) {
+                return null;
+              }
+
+              const projectName = context.file.filePath.replace(/\/.+\.md$/, '');
+              const projectPath = path.join(projectName, 'package.json');
+              const packageJson = JSON.parse(await fs.readFile(projectPath, 'utf-8'));
+
+              return {
+                projectName: projectName,
+                packageName: packageJson.name,
+                prompts: value.prompts ?? [],
+                messages: value.messages ?? {},
+              };
+            },
           },
           /**
            * Auto-generated link to edit the example on GitHub.
