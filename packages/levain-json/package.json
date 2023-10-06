@@ -9,7 +9,25 @@
     "schema.json"
   ],
   "scripts": {
+    "lint": "eslint .",
     "typescript-json-schema": "typescript-json-schema LevainJson.ts LevainJson -o schema.json"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "@stickyjs"
+    ]
   },
   "devDependencies": {
     "typescript-json-schema": "^0.61.0"

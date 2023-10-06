@@ -3,6 +3,10 @@ title: NeoBank
 description: Accept deposits, forward deposits to a omnibus wallet, and withdraw funds from the omnibus wallet.
 framework: Next.js
 publisher: Levain
+template:
+  prompts: []
+  messages:
+    postInstall: To start the app, run `npm run dev` and open http://localhost:3000 with your browser.
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped
