@@ -1,7 +1,7 @@
 {
   "name": "@levain-examples/levain-graphql-examples",
   "version": "1.0.0",
-  "private": false,
+  "private": true,
   "description": "Example codes for creating your own services with Levain GraphQL APIs.",
   "license": "MIT",
   "main": "src/app.ts",
