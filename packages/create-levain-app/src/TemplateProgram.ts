@@ -1,7 +1,7 @@
-import { writeFileSync } from 'node:fs';
+import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { execa } from 'execa';
+import execa from 'execa';
 import pacote from 'pacote';
 import { blue } from 'picocolors';
 
@@ -15,6 +15,7 @@ export class TemplateProgram {
     await pacote.extract(packageSpec, installDir);
 
     await overridePackageJson(installDir, projectConfig);
+    // await removeFiles(installDir);
 
     console.log(`  Installing dependencies...`);
     await execa('npm', ['install'], { cwd: installDir });
@@ -28,9 +29,18 @@ export class TemplateProgram {
 
 async function overridePackageJson(installDir: string, projectConfig: ProjectConfig): Promise<void> {
   const packageJsonPath = join(installDir, 'package.json');
-  const packageJson = await import(packageJsonPath);
+  const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf-8'));
   packageJson.name = projectConfig.path;
   packageJson.private = true;
   packageJson.version = '0.0.0';
-  writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
 }
+
+// async function removeFiles(installDir: string): Promise<void> {
+//   for (const file of [
+//     '.npmignore',
+//     'LICENSE',
+//   ]) {
+//     await rm(join(installDir, file));
+//   }
+// }
