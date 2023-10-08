@@ -46,7 +46,3 @@ To access the examples, you'll have to access the following URLs:
 - _Generate deposit addresses_ at `http://localhost:3000/generate-deposit-addresses`
 - _Create a transaction via an API co-signer_ at `http://localhost:3000/process-withdrawal?address=0xWhitelistedAddress`
 - _Create a swap using 0x API and then sign via Levain_ at `http://localhost:3000/process-tx`
-
-## License
-
-MIT

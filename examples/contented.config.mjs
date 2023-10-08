@@ -97,6 +97,13 @@ const config = {
               const projectPath = path.join(projectName, 'package.json');
               const packageJson = JSON.parse(await fs.readFile(projectPath, 'utf-8'));
 
+              if (packageJson.private !== false) {
+                console.log(
+                  `Project ${projectName} is private and cannot be used as a template. This is to prevent accidental publishing of private projects. You can set "private": false in package.json to enable this template.`,
+                );
+                return null;
+              }
+
               return {
                 projectName: projectName,
                 packageName: packageJson.name,
