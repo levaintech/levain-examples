@@ -5,11 +5,10 @@ import ExampleIndex from '@levain-examples/examples/dist/Example/index.json';
 import { green } from 'picocolors';
 import prompts from 'prompts';
 
-import { isFolderEmpty } from './utils/FolderEmpty';
-import { isNpmNameValid } from './utils/NpmNameValid';
-
 // @ts-ignore - this file will always be present
 import { version } from '../package.json';
+import { isFolderEmpty } from './utils/FolderEmpty';
+import { isNpmNameValid } from './utils/NpmNameValid';
 
 export interface ProjectConfig {
   path: string;
