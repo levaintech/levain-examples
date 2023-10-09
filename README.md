@@ -8,6 +8,8 @@
 Our curated collection of examples and solutions. Use these starter patterns to build your own robust and scalable
 crypto applications to streamline your development process.
 
+Get started with templates by running `npx create-levain-app@latest` in your terminal.
+
 ## Levain Examples
 
 Levain examples are self-contained projects that demonstrate a specific use case or feature of Levain.
