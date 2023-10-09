@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import execa from 'execa';
@@ -15,7 +15,7 @@ export class TemplateProgram {
     await pacote.extract(packageSpec, installDir);
 
     await overridePackageJson(installDir, projectConfig);
-    // await removeFiles(installDir);
+    await overrideFiles(installDir);
 
     console.log(`  Installing dependencies...`);
     await execa('npm', ['install'], { cwd: installDir });
@@ -27,6 +27,9 @@ export class TemplateProgram {
   }
 }
 
+/**
+ * Override the package.json file in the template.
+ */
 async function overridePackageJson(installDir: string, projectConfig: ProjectConfig): Promise<void> {
   const packageJsonPath = join(installDir, 'package.json');
   const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf-8'));
@@ -36,11 +39,13 @@ async function overridePackageJson(installDir: string, projectConfig: ProjectCon
   await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
 }
 
-// async function removeFiles(installDir: string): Promise<void> {
-//   for (const file of [
-//     '.npmignore',
-//     'LICENSE',
-//   ]) {
-//     await rm(join(installDir, file));
-//   }
-// }
+/**
+ * Override certain files in the template.
+ */
+async function overrideFiles(installDir: string): Promise<void> {
+  // Move the .npmignore file to .gitignore due to npm's behavior of replacing .gitignore with .npmignore.
+  await execa('mv', ['.npmignore', '.gitignore'], { cwd: installDir });
+
+  // Remove the LICENSE file from the template such that it doesn't assume the user is using the MIT license.
+  await rm(join(installDir, 'LICENSE'));
+}
