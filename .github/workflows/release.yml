@@ -47,7 +47,7 @@ jobs:
 
       - run: npm config set "//registry.npmjs.org/:_authToken" "\${NPM_AUTH_TOKEN}" --location=global
 
-      - run: pnpm -r exec npm publish --access public --tag latest --no-git-checks
+      - run: pnpm -r exec "if [ \"$(node -p \"require('./package.json').private\")\" = \"false\" ]; then npm publish --access public --tag latest --no-git-checks; fi"
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
