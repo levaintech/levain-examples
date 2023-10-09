@@ -30,11 +30,11 @@ importers:
   examples:
     devDependencies:
       '@contentedjs/contented':
-        specifier: ^6.2.0
-        version: 6.2.0(typanion@3.14.0)
+        specifier: ^6.2.1
+        version: 6.2.1(typanion@3.14.0)
       '@contentedjs/contented-pipeline-md':
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.2.1
+        version: 6.2.1
 
   examples/levain-graphql-examples:
     dependencies:
@@ -252,10 +252,10 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@contentedjs/contented-pipeline-md@6.2.0:
-    resolution: {integrity: sha512-UUhDImJyRFCrk6fjVxS6n6zqr9K5mibFdP1cWO68NQ3zH0teDIhYcgS/T74Z0zQMS0Xx+sAOgkQpV3+RBExLEA==}
+  /@contentedjs/contented-pipeline-md@6.2.1:
+    resolution: {integrity: sha512-xjCIQJt1+NnsA8MooiZVqGLfFmWeoTCdSfWLTDmrkocjkSLdWStFkGGiRFcyFOjjkOhxsEYAEH9Lfms/cQ75rA==}
     dependencies:
-      '@contentedjs/contented-pipeline': 6.2.0
+      '@contentedjs/contented-pipeline': 6.2.1
       '@jsdevtools/rehype-toc': 3.0.2
       '@sindresorhus/slugify': 2.2.1
       hast-util-to-string: 2.0.0
@@ -283,28 +283,28 @@ packages:
       - supports-color
     dev: true
 
-  /@contentedjs/contented-pipeline@6.2.0:
-    resolution: {integrity: sha512-F9ewEF2Q5herN3xLE3bNLsqa/dGmssEGQ6kjknSGUQE0Yx9fOSPKSfPal8eEaZIv3ctlqjASP84Od38EXpGb+w==}
+  /@contentedjs/contented-pipeline@6.2.1:
+    resolution: {integrity: sha512-Q4QW99oyP7/8aOrCMzoDcYkFOqZIIa9WdxH3sAYlO27WfgWrPykN3ohIsHnGZRdddT+7yGArizHv6F/8bXVj/Q==}
     dependencies:
       '@sindresorhus/slugify': 2.2.1
     dev: true
 
-  /@contentedjs/contented-processor@6.2.0:
-    resolution: {integrity: sha512-txTPANLJWmpzPRN89Gyz7pQpmAwMoLwcHuYmU06PfSn4w9AWSKNphv8TJpXFenHW12Uyijr9lho3SFAsUa21fw==}
+  /@contentedjs/contented-processor@6.2.1:
+    resolution: {integrity: sha512-KCoOqcdHIEJrvTxga0dlikmi/03JeH53IqRk/V80DpFHAyN23TMayMUnFdKpKIwuZWB3HnZPxn1wb5Ux3foS3Q==}
     dependencies:
       '@babel/generator': 7.23.0
-      '@contentedjs/contented-pipeline': 6.2.0
-      '@contentedjs/contented-pipeline-md': 6.2.0
+      '@contentedjs/contented-pipeline': 6.2.1
+      '@contentedjs/contented-pipeline-md': 6.2.1
       minimatch: 5.1.6
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@contentedjs/contented@6.2.0(typanion@3.14.0):
-    resolution: {integrity: sha512-JSV2FDF55z6CE2VMe+UtoCzZUFwd7+gcGpJm6llpB0IqlVb44EvYUZ1iX1sooJeWFm+icBeBBIGkU31v6VA5tg==}
+  /@contentedjs/contented@6.2.1(typanion@3.14.0):
+    resolution: {integrity: sha512-E5IGtg6w09c5IebdoB7twl0n8yA92gWRrzlmM1DzoIV60t07tQT1A2TbZM3kfdgzjkpZxgimtamfWvkhTRNmMA==}
     hasBin: true
     dependencies:
-      '@contentedjs/contented-processor': 6.2.0
+      '@contentedjs/contented-processor': 6.2.1
       '@parcel/watcher': 2.3.0
       clipanion: 3.2.1(typanion@3.14.0)
       debounce: 1.2.1
