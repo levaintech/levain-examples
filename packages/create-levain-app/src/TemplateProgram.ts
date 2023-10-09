@@ -11,7 +11,7 @@ export class TemplateProgram {
   static async run(projectConfig: ProjectConfig): Promise<void> {
     console.log(`  Downloading ${blue(projectConfig.template.packageName)} into ${blue(`./${projectConfig.path}`)}`);
     const installDir = join(process.cwd(), projectConfig.path);
-    const packageSpec = `${projectConfig.template.packageName}@latest`;
+    const packageSpec = `${projectConfig.template.packageName}@${projectConfig.version}`;
     await pacote.extract(packageSpec, installDir);
 
     await overridePackageJson(installDir, projectConfig);
