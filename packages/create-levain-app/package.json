@@ -4,7 +4,7 @@
   "private": false,
   "description": "Create a new project with Levain quickly.",
   "repository": {
-    "url": "git+https://github.com/levaintech/levain-examples"
+    "url": "git+https://github.com/levaintech/levain-examples.git"
   },
   "bin": "cli.js",
   "files": [
