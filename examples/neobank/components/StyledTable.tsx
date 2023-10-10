@@ -1,6 +1,10 @@
 import { ReactElement, ReactNode } from 'react';
 import { clsx } from 'clsx';
 
+/**
+ * StyledTable is a wrapper around the HTML table element that adds some styling
+ * to child elements.
+ */
 export function StyledTable(props: { children: ReactNode[] }): ReactElement {
   return (
     <div className="overflow-x-auto">
