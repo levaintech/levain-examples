@@ -5,7 +5,7 @@ import { StyledTable } from '@/components/StyledTable';
 export default function WalletPage(): ReactElement {
   return (
     <main className="mx-auto my-6 w-full max-w-screen-xl px-6 lg:my-10 lg:px-10">
-      <div className="border-mono-50 bg-mono-900 border">
+      <div className="border-mono-50 border">
         <div className="p-5">
           <h2>Omnibus Wallets</h2>
         </div>
