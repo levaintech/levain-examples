@@ -47,7 +47,7 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.5",
+    "@types/prompts": "^2.4.6",
     "@types/validate-npm-package-name": "^4.0.0"
   }
 }
