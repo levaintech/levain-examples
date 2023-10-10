@@ -145,13 +145,13 @@ importers:
     devDependencies:
       '@types/node':
         specifier: latest
-        version: 20.8.4
+        version: 20.8.3
       '@types/react':
         specifier: latest
-        version: 18.2.27
+        version: 18.2.25
       '@types/react-dom':
         specifier: latest
-        version: 18.2.12
+        version: 18.2.11
       autoprefixer:
         specifier: latest
         version: 10.4.16(postcss@8.4.31)
