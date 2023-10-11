@@ -13,7 +13,7 @@ export default function WalletPage(): ReactElement {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Blockchain CAIP19 Identifier</th>
+              <th>Blockchain CAIP2 Identifier</th>
               <th>Link to Scan</th>
               <th></th>
             </tr>
