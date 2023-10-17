@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import apiCosigningRoute from './api/api-cosigning';
+import apiCosigningErc20Route from './api/api-cosigning-erc20'
 import walletRoute from './api/create-wallet';
 import depositAddressRoute from './api/generate-deposit-addresses';
 import txWith0xRoute from './api/api-cosigning-custom-tx';
@@ -22,6 +23,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use(apiCosigningRoute);
+app.use(apiCosigningErc20Route)
 app.use(walletRoute);
 app.use(depositAddressRoute);
 app.use(txWith0xRoute);
