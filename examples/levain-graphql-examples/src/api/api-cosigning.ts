@@ -28,13 +28,16 @@ router.get('/process-withdrawal', async (req, res) => {
      * Once all checks have passed, create a transaction request via Levain
      */
 
+    const provider = new ethers.JsonRpcProvider(process.env.PROVIDER_BASE_URL);
+
     const withdrawalAddress = req.query.address;
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
       orgId: process.env.LEVAIN_ORG_ID as string,
       walletId: process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string,
-      networkAssetId: 'cdfef64e-d040-4f1b-bc71-5955d0442305', // Goerli Ether on Ethereum Goerli Testnet
+      // networkAssetId: 'abbd6617-1783-444f-84f5-62514c54912c', // Ether on Ethereum Goerli Testnet
+      networkAssetId: '4195f3f1-c04a-4fd3-8b86-27061502814d', // Ether on Ethereum Sepolia Testnet
       transactionData: {
         // Wallets created using SimpleMultiSig.sol must use simpleMultiSig -- Safe implementation will be announced soon
         simpleMultiSig: {
@@ -91,7 +94,6 @@ router.get('/process-withdrawal', async (req, res) => {
 
     // The actual signed transaction that can be broadcasted on-chain, signed by gas tank
     const signedTx = signTxRequest.transactionSigned;
-    const provider = new ethers.JsonRpcProvider(process.env.PROVIDER_BASE_URL);
     const tx = await provider.send('eth_sendRawTransaction', [signedTx]);
     console.log(`https://goerli.etherscan.io/tx/${tx}`);
 
