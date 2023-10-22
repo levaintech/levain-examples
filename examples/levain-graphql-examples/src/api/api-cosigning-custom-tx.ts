@@ -7,7 +7,7 @@ import {
   approveTransactionRequest,
   createTransactionDigests,
   createTransactionRequest,
-  signTransactionRequest,
+  executeTransaction,
 } from '../utils/mutations';
 
 dotenv.config();
@@ -17,10 +17,10 @@ const router = express.Router();
 // Endpoint to process withdrawal
 router.get('/process-tx', async (req, res) => {
   try {
-    const provider = new ethers.JsonRpcProvider(process.env.PROVIDER_BASE_URL);
+    // This example requires an Ethereum Goerli Testnet wallet, and its associated private key
+    const encryptedPrivateKeyFile = 'api-cosigner-private-key-goerli.json';
 
     // Call external API e.g. 0x to get tx builder
-    // @ts-ignore
     const response = await fetch(
       `${process.env.ZERO_EX_API_BASE_URL}/swap/v1/quote?buyToken=0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984&sellToken=ETH&sellAmount=100000&excludedSources=Kyber`,
       {
@@ -38,13 +38,17 @@ router.get('/process-tx', async (req, res) => {
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
       orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId: process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string,
+      walletId: process.env.LEVAIN_OPS_TRADING_WALLET_ID as string,
       transactionData: {
         // Wallets created using SimpleMultiSig.sol must use simpleMultiSig -- Safe implementation will be announced soon
         simpleMultiSig: {
+          // @ts-ignore
           destination: json.to,
+          // @ts-ignore
           data: json.data,
+          // @ts-ignore
           value: json.value,
+          // @ts-ignore
           gasLimit: json.gas,
         },
       },
@@ -63,7 +67,7 @@ router.get('/process-tx', async (req, res) => {
     // Create transaction digests using the requestId
     const createTxDigests = await createTransactionDigests({
       orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId: process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string,
+      walletId: process.env.LEVAIN_OPS_TRADING_WALLET_ID as string,
       requestId: createTxRequest.requestId,
     });
 
@@ -71,7 +75,7 @@ router.get('/process-tx', async (req, res) => {
     console.log('Digest to be API co-signed', digestToApiCosign);
 
     // This contains sensitive information: the encrypted private key. You will sign transactions using this key
-    const apiCoSignerPrivateKey = JSON.parse(fs.readFileSync('api-cosigner-private-key.json', 'utf-8'));
+    const apiCoSignerPrivateKey = JSON.parse(fs.readFileSync(encryptedPrivateKeyFile, 'utf-8'));
 
     const privateKey = decrypt(
       process.env.LEVAIN_USER_SIGNING_KEY_PASSWORD as string,
@@ -86,17 +90,14 @@ router.get('/process-tx', async (req, res) => {
     console.log('signatureWithoutV', signatureWithoutV);
 
     // Submit the signed transaction to Levain to co-sign to get the other signature
-    const signTxRequest = await signTransactionRequest({
+    const executedTx = await executeTransaction({
       orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId: process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string,
+      walletId: process.env.LEVAIN_OPS_TRADING_WALLET_ID as string,
       requestId: createTxRequest.requestId,
       signature: signatureWithoutV,
     });
 
-    // The actual signed transaction that can be broadcasted on-chain, signed by gas tank
-    const signedTx = signTxRequest.transactionSigned;
-    const tx = await provider.send('eth_sendRawTransaction', [signedTx]);
-    console.log(`https://goerli.etherscan.io/tx/${tx}`);
+    console.log(executedTx);
 
     // HTTP response
     res.status(200).json({

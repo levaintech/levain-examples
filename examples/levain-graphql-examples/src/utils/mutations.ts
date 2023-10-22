@@ -20,7 +20,6 @@ export interface NewSimpleMultiSigTransactionRequestData {
   gasLimit: string;
 }
 
-
 // Using Levain to build an ERC-20 transaction
 export async function buildErc20Transaction(walletId: string, input: any) {
   const BUILD_ERC20_TRANSACTION = gql`
@@ -203,6 +202,109 @@ export async function signTransactionRequest(input: any) {
   });
 
   return response.data.signTransactionRequest;
+}
+
+// Submit the signature of the transaction request's digest
+export async function submitSignature(input: any) {
+  const SUBMIT_SIGNATURE = gql`
+    mutation SubmitSignature($input: SubmitSignatureInput!) {
+      submitSignature(input: $input) {
+        requestId
+        walletId
+        networkAssetId
+        createdAt
+        updatedAt
+        summaryEvm {
+          data
+          value
+        }
+        asset {
+          identifier
+          name
+          decimals
+          isNative
+        }
+        digests {
+          digest
+          kvsDigest {
+            signature
+            state
+            createdAt
+            updatedAt
+          }
+          kvsDigestId
+        }
+        initiator {
+          userId
+          user {
+            email
+          }
+        }
+        transactionSignature
+        transactionSigned
+        status
+      }
+    }
+  `;
+
+  const response = await client.mutate({
+    mutation: SUBMIT_SIGNATURE,
+    variables: { input },
+  });
+
+  return response.data.submitSignature;
+}
+
+// Execute the signed transaction request
+export async function executeTransaction(input: any) {
+  const EXECUTE_TRANSACTION = gql`
+    mutation ExecuteTransaction($input: ExecuteTransactionInput!) {
+      executeTransaction(input: $input) {
+        requestId
+        walletId
+        networkAssetId
+        createdAt
+        updatedAt
+        summaryEvm {
+          data
+          value
+        }
+        asset {
+          identifier
+          name
+          decimals
+          isNative
+        }
+        digests {
+          digest
+          kvsDigest {
+            signature
+            state
+            createdAt
+            updatedAt
+          }
+          kvsDigestId
+        }
+        initiator {
+          userId
+          user {
+            email
+          }
+        }
+        transactionHash
+        transactionSignature
+        transactionSigned
+        status
+      }
+    }
+  `;
+
+  const response = await client.mutate({
+    mutation: EXECUTE_TRANSACTION,
+    variables: { input },
+  });
+
+  return response.data.executeTransaction;
 }
 
 // Create keys on Levain
