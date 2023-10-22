@@ -98,7 +98,7 @@ router.get('/process-withdrawal', async (req, res) => {
     res.status(200).json({
       message: 'Successfully co-signed transaction using Levain GraphQL APIs',
       tx: executedTx.transactionHash,
-      txExplorerLink: `https://goerli.etherscan.io/tx/${executedTx.transactionHash}`,
+      txExplorerLink: `https://sepolia.etherscan.io/tx/${executedTx.transactionHash}`,
     });
   } catch (error) {
     console.log(error);

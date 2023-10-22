@@ -20,7 +20,8 @@ router.get('/process-tx', async (req, res) => {
     // This example requires an Ethereum Goerli Testnet wallet, and its associated private key
     const encryptedPrivateKeyFile = 'api-cosigner-private-key-goerli.json';
 
-    // Call external API e.g. 0x to get tx builder
+    // Call external API e.g. 0x to get tx builder, ignoring TS2304 error because of Node 18
+    // @ts-ignore
     const response = await fetch(
       `${process.env.ZERO_EX_API_BASE_URL}/swap/v1/quote?buyToken=0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984&sellToken=ETH&sellAmount=100000&excludedSources=Kyber`,
       {
@@ -102,6 +103,8 @@ router.get('/process-tx', async (req, res) => {
     // HTTP response
     res.status(200).json({
       message: 'Successfully co-signed transaction using Levain GraphQL APIs',
+      tx: executedTx.transactionHash,
+      txExplorerLink: `https://goerli.etherscan.io/tx/${executedTx.transactionHash}`,
     });
   } catch (error) {
     console.log(error);
