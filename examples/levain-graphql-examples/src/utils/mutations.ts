@@ -20,7 +20,6 @@ export interface NewSimpleMultiSigTransactionRequestData {
   gasLimit: string;
 }
 
-
 // Using Levain to build an ERC-20 transaction
 export async function buildErc20Transaction(walletId: string, input: any) {
   const BUILD_ERC20_TRANSACTION = gql`
