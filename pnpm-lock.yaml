@@ -171,8 +171,8 @@ importers:
         specifier: workspace:*
         version: link:../../examples
       '@types/pacote':
-        specifier: ^11.1.6
-        version: 11.1.6
+        specifier: ^11.1.7
+        version: 11.1.7
       execa:
         specifier: ^5.1.1
         version: 5.1.1
@@ -1402,7 +1402,7 @@ packages:
   /@types/node-fetch@2.6.6:
     resolution: {integrity: sha512-95X8guJYhfqiuVVhRFxVQcf4hW/2bCuoPwDasMf/531STFoNoWTT7YDnWdXHEZKqAGUigmpG31r2FE70LwnzJw==}
     dependencies:
-      '@types/node': 20.8.5
+      '@types/node': 20.8.7
       form-data: 4.0.0
     dev: false
 
@@ -1423,8 +1423,8 @@ packages:
     dependencies:
       undici-types: 5.25.3
 
-  /@types/node@20.8.5:
-    resolution: {integrity: sha512-SPlobFgbidfIeOYlzXiEjSYeIJiOCthv+9tSQVpvk4PAdIIc+2SmjNVzWXk9t0Y7dl73Zdf+OgXKHX9XtkqUpw==}
+  /@types/node@20.8.7:
+    resolution: {integrity: sha512-21TKHHh3eUHIi2MloeptJWALuCu5H7HQTdTrWIFReA8ad+aggoX+lRes3ex7/FtpC+sVUpFMQ+QTfYr74mruiQ==}
     dependencies:
       undici-types: 5.25.3
     dev: false
@@ -1446,7 +1446,7 @@ packages:
   /@types/npm-registry-fetch@8.0.5:
     resolution: {integrity: sha512-mAyQmKTF/4dhXTeSicltEtMO+Vj/LEUoBkMgDn9tS2fGp8IsrZPkYv2GH0KKBcbFLXUq67wuzYwl0DCZGeRcpw==}
     dependencies:
-      '@types/node': 20.8.4
+      '@types/node': 20.8.7
       '@types/node-fetch': 2.6.6
       '@types/npm-package-arg': 6.1.2
       '@types/npmlog': 4.1.4
@@ -1457,10 +1457,10 @@ packages:
     resolution: {integrity: sha512-WKG4gTr8przEZBiJ5r3s8ZIAoMXNbOgQ+j/d5O4X3x6kZJRLNvyUJuUK/KoG3+8BaOHPhp2m7WC6JKKeovDSzQ==}
     dev: false
 
-  /@types/pacote@11.1.6:
-    resolution: {integrity: sha512-Uh0+ivCS2p+pMFZmU1u20sGi7O8BJnBOCuNXsBaAMD/6/NIcbI/CcnBUNpTeVhOuFmOwn9/z8BxprpPhL+UkVg==}
+  /@types/pacote@11.1.7:
+    resolution: {integrity: sha512-XW4UbANZdZ/Rwz18e3jRZ7h92KfXwlJNG7b+AnD+gbl0bNr7qX1GddD3Gy2Ig/RDBYM6h+Bj2ronjtrGMxSdZw==}
     dependencies:
-      '@types/node': 20.8.4
+      '@types/node': 20.8.7
       '@types/npm-registry-fetch': 8.0.5
       '@types/npmlog': 4.1.4
       '@types/ssri': 7.1.2
@@ -1529,7 +1529,7 @@ packages:
   /@types/ssri@7.1.2:
     resolution: {integrity: sha512-Mbo/NaBiZlXNlOFTLK+PXeVEzKFxi+ZVELuzmk4VxdRz6aqKpmP9bhcNqsIB2c/s78355WBHwUCGYhQDydcfEg==}
     dependencies:
-      '@types/node': 20.8.4
+      '@types/node': 20.8.7
     dev: false
 
   /@types/unist@2.0.8:
