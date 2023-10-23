@@ -32,21 +32,19 @@ router.get('/process-withdrawal-erc20', async (req, res) => {
     const provider = new ethers.JsonRpcProvider(process.env.PROVIDER_BASE_URL);
 
     // Levain uses CAIP standards for referencing blockchain networks and tokens
-    const blockchain = 'caip19:eip155:11155111' // See https://developer.levain.tech/products/graph/docs/supported-chains
-    const tokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984' // UNI on Ethereum Sepolia Testnet
-    const tokenContractCaip19 = `${blockchain}/erc20:${tokenContractAddress}` // Formatted CAIP19 reference, see https://developer.levain.tech/products/graph/docs/supported-tokens
-    console.log(tokenContractCaip19)
+    const blockchain = 'caip19:eip155:11155111'; // See https://developer.levain.tech/products/graph/docs/supported-chains
+    const tokenContractAddress = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'; // UNI on Ethereum Sepolia Testnet
+    const tokenContractCaip19 = `${blockchain}/erc20:${tokenContractAddress}`; // Formatted CAIP19 reference, see https://developer.levain.tech/products/graph/docs/supported-tokens
+    console.log(tokenContractCaip19);
     const withdrawalAddress = req.query.address;
 
     // Build ERC-20 transfer transaction to get the tx data
-    const erc20Transaction = await buildErc20Transaction(
-      process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string, {
-        to: withdrawalAddress as string,
-        asset: tokenContractCaip19,
-        amount: 0.00001, // decimals are taken care of by Levain, only input the formatted amount e.g. 10.5 UNI, 20 USDT etc.
-        feeLevel: 'low'
-      }
-    );
+    const erc20Transaction = await buildErc20Transaction(process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID as string, {
+      to: withdrawalAddress as string,
+      asset: tokenContractCaip19,
+      amount: 0.00001, // decimals are taken care of by Levain, only input the formatted amount e.g. 10.5 UNI, 20 USDT etc.
+      feeLevel: 'low',
+    });
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
