@@ -83,7 +83,7 @@ importers:
         version: 3.0.1
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.1(@types/node@20.8.5)(typescript@5.2.2)
+        version: 10.9.1(@types/node@20.8.7)(typescript@5.2.2)
 
   examples/neobank:
     dependencies:
@@ -193,8 +193,8 @@ importers:
         specifier: ^2.4.6
         version: 2.4.6
       '@types/validate-npm-package-name':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.1
+        version: 4.0.1
 
   packages/levain-json:
     devDependencies:
@@ -1427,6 +1427,13 @@ packages:
     resolution: {integrity: sha512-SPlobFgbidfIeOYlzXiEjSYeIJiOCthv+9tSQVpvk4PAdIIc+2SmjNVzWXk9t0Y7dl73Zdf+OgXKHX9XtkqUpw==}
     dependencies:
       undici-types: 5.25.3
+    dev: false
+
+  /@types/node@20.8.7:
+    resolution: {integrity: sha512-21TKHHh3eUHIi2MloeptJWALuCu5H7HQTdTrWIFReA8ad+aggoX+lRes3ex7/FtpC+sVUpFMQ+QTfYr74mruiQ==}
+    dependencies:
+      undici-types: 5.25.3
+    dev: true
 
   /@types/normalize-package-data@2.4.2:
     resolution: {integrity: sha512-lqa4UEhhv/2sjjIQgjX8B+RBjj47eo0mzGasklVJ78UKGQY1r0VpB9XHDaZZO9qzEFDdy4MrXLuEaSmPrPSe/A==}
@@ -1533,8 +1540,8 @@ packages:
     resolution: {integrity: sha512-MFETx3tbTjE7Uk6vvnWINA/1iJ7LuMdO4fcq8UfF0pRbj01aGLduVvQcRyswuACJdpnHgg8E3rQLhaRdNEJS0w==}
     dev: true
 
-  /@types/validate-npm-package-name@4.0.0:
-    resolution: {integrity: sha512-RpO62vB2lkjEkyLbwTheA2+uwYmtVMWTr/kWRI++UAgVdZqNqdAuIQl/SxBCGeMKfdjWaXPbyhZbiCc4PAj+KA==}
+  /@types/validate-npm-package-name@4.0.1:
+    resolution: {integrity: sha512-yzivVVAvMhDeboopQ49JNZ+9aCQV5jy4KfUw2LLFJ08oNyNFnG2Il7p/giMQBcJi4FVVqcl2vBIEll6YrKrS/Q==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.7.3(@typescript-eslint/parser@6.7.3)(eslint@8.50.0)(typescript@5.2.2):
@@ -6518,7 +6525,7 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.8.5)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@20.8.7)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -6537,7 +6544,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.8.5
+      '@types/node': 20.8.7
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
