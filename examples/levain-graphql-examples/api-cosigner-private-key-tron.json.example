@@ -1,0 +1,13 @@
+{
+  "encryptedPrivateKey": {
+    "cipher": "AES_256_CBC",
+    "keyDerivation": "pbkdf2",
+    "keyHasher": "sha256",
+    "iter": 10000,
+    "salt": "<Input the salt here>",
+    "iv": "<Input the init vector here>",
+    "cipherText": "<Input the cipher text here>",
+    "hash": "<Input the hash here>"
+  },
+  "publicKey": "<Input the pubkey here>"
+}
