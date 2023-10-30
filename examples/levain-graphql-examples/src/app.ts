@@ -6,6 +6,7 @@ import apiCosigningTrc20Route from './api/api-cosigning-trc20';
 import walletRoute from './api/create-wallet';
 import depositAddressRoute from './api/generate-deposit-addresses';
 import txWith0xRoute from './api/api-cosigning-custom-tx';
+import getNetworkAssetsRoute from './api/get-network-assets';
 
 dotenv.config();
 
@@ -26,6 +27,8 @@ app.get('/', async (req, res) => {
 app.use(apiCosigningRoute);
 app.use(apiCosigningErc20Route);
 app.use(apiCosigningTrc20Route);
+app.use(getNetworkAssetsRoute);
+
 app.use(walletRoute);
 app.use(depositAddressRoute);
 app.use(txWith0xRoute);

@@ -40,12 +40,16 @@ router.get('/process-withdrawal-erc20', async (req, res) => {
     console.log(tokenContractCaip19);
     const withdrawalAddress = req.query.address;
 
+    if (withdrawalAddress === undefined) {
+      throw new Error('You must specify an address to send to');
+    }
+
     // Build ERC-20 transfer transaction to get the tx data
     const erc20Transaction = await buildErc20Transaction(walletId, {
       to: withdrawalAddress as string,
       asset: tokenContractCaip19,
       amount: 0.00001, // Decimals are taken care of by Levain, only input the formatted amount e.g. 10.5 UNI, 20 USDT etc.
-      feeLevel: 'low',
+      feeLevel: 'Low',
     });
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet

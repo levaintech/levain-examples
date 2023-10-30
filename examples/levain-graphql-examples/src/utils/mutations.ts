@@ -10,7 +10,8 @@ export interface CreateTransactionRequestInput {
 }
 
 export interface NewTransactionRequestData {
-  simpleMultiSig: NewSimpleMultiSigTransactionRequestData;
+  simpleMultiSig?: NewSimpleMultiSigTransactionRequestData;
+  tron?: any;
 }
 
 export interface NewSimpleMultiSigTransactionRequestData {
@@ -403,4 +404,49 @@ export async function createWalletDepositAddress(input: any) {
   });
 
   return response.data.createWalletDepositAddress;
+}
+
+export async function getNetworkAssets(orgId: string) {
+  const GET_NETWORK_ASSETS = gql`
+    query networkAssets($orgId: ID!) {
+      organization(orgId: $orgId) {
+        networks(first: 100) {
+          edges {
+            node {
+              networkId
+              network {
+                protocolName
+                networkName
+                nativeAsset {
+                  networkAssetId
+                  name
+                  identifier
+                  symbol
+                  decimals
+                }
+                assets {
+                  edges {
+                    node {
+                      networkAssetId
+                      name
+                      identifier
+                      symbol
+                      decimals
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await client.query({
+    query: GET_NETWORK_ASSETS,
+    variables: { orgId },
+  });
+
+  return response.data.organization.networks.edges;
 }
