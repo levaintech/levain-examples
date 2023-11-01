@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import { decrypt, prefixHex, stripHexPrefix } from '../utils/crypto';
 import {
   approveTransactionRequest,
-  buildErc20Transaction,
+  buildTransaction,
   createTransactionDigests,
   createTransactionRequest,
   executeTransaction,
@@ -45,7 +45,7 @@ router.get('/process-withdrawal-erc20', async (req, res) => {
     }
 
     // Build ERC-20 transfer transaction to get the tx data
-    const erc20Transaction = await buildErc20Transaction(walletId, {
+    const erc20Transaction = await buildTransaction(walletId, {
       to: withdrawalAddress as string,
       asset: tokenContractCaip19,
       amount: 0.00001, // Decimals are taken care of by Levain, only input the formatted amount e.g. 10.5 UNI, 20 USDT etc.
