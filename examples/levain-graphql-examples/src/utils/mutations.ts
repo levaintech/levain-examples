@@ -21,7 +21,7 @@ export interface NewSimpleMultiSigTransactionRequestData {
   gasLimit: string;
 }
 
-// Using Levain to build a blockchain transaction
+// Using Levain to build a token transfer transaction
 export async function buildTransaction(walletId: string, input: any) {
   const BUILD_TRANSACTION = gql`
     query BuildTransaction($walletId: ID!, $input: BuildTransactionInput!) {
@@ -34,6 +34,7 @@ export async function buildTransaction(walletId: string, input: any) {
   const response = await client.query({
     query: BUILD_TRANSACTION,
     variables: { walletId, input },
+    fetchPolicy: 'no-cache',
   });
 
   return response.data.wallet.buildTransaction;

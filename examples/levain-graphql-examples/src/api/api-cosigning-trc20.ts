@@ -45,14 +45,14 @@ router.get('/process-withdrawal-trc20', async (req, res) => {
       throw new Error('You must specify an address to send to');
     }
 
-    // Build ERC-20 transfer transaction to get the tx data
-    const erc20Transaction = await buildTransaction(walletId, {
+    // Build TRC-20 transfer transaction to get the tx data
+    const trc20Transaction = await buildTransaction(walletId, {
       to: withdrawalAddress as string,
       asset: tokenContractCaip19,
       amount: 1, // Decimals are taken care of by Levain, only input the formatted amount e.g. 10.5 UNI, 20 USDT etc.
       feeLevel: 'Low',
     });
-    console.log(erc20Transaction);
+    console.log(trc20Transaction);
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
@@ -60,7 +60,7 @@ router.get('/process-withdrawal-trc20', async (req, res) => {
       walletId,
       transactionData: {
         tron: {
-          json: erc20Transaction.tron.json,
+          json: trc20Transaction.tron.json,
         },
       },
     });
