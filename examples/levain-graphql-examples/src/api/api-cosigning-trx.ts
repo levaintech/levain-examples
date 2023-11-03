@@ -16,7 +16,7 @@ dotenv.config();
 const router = express.Router();
 
 // Endpoint to process withdrawal
-router.get('/process-withdrawal-trc20', async (req, res) => {
+router.get('/process-withdrawal-trx', async (req, res) => {
   try {
     /*
      * The following checks are not implemented in this sample code, but should be implemented in production:
@@ -29,38 +29,35 @@ router.get('/process-withdrawal-trc20', async (req, res) => {
      * Once all checks have passed, create a transaction request via Levain
      */
 
-    // This example requires an Ethereum Sepolia Testnet wallet, and its associated private key
+    // This example requires a Tron Shasta (testnet) wallet, and its associated private key
     const walletId = process.env.LEVAIN_OPS_WITHDRAWAL_TRON_HOT_WALLET_ID as string;
     const encryptedPrivateKeyFile = 'api-cosigner-private-key-tron.json';
 
-    // Levain uses CAIP standards for referencing blockchain networks and tokens
-    // caip19:tip474:2494104990/trc20:TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs
-    const blockchain = 'caip19:tip474:2494104990'; // See https://developer.levain.tech/products/graph/docs/supported-chains
-    const tokenContractAddress = 'TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs'; // USDT on Tron Shasta Testnet
-    const tokenContractCaip19 = `${blockchain}/trc20:${tokenContractAddress}`; // Formatted CAIP19 reference, see https://developer.levain.tech/products/graph/docs/supported-tokens
-    console.log(tokenContractCaip19);
     const withdrawalAddress = req.query.address;
 
     if (withdrawalAddress === undefined) {
       throw new Error('You must specify an address to send to');
     }
 
-    // Build TRC-20 transfer transaction to get the tx data
-    const trc20Transaction = await buildTransaction(walletId, {
+    const blockchain = 'caip19:tip474:2494104990'; // See https://developer.levain.tech/products/graph/docs/supported-chains
+    const trxSlip44 = 'slip44:195'; // TRX on Tron Shasta Testnet
+    const trxCaip19 = `${blockchain}/${trxSlip44}`; // Formatted CAIP19 reference, see https://developer.levain.tech/products/graph/docs/supported-tokens
+
+    const trxTransaction = await buildTransaction(walletId, {
       to: withdrawalAddress as string,
-      asset: tokenContractCaip19,
+      asset: trxCaip19,
       amount: 1, // Decimals are taken care of by Levain, only input the formatted amount e.g. 10.5 UNI, 20 USDT etc.
       feeLevel: 'Low',
     });
-    console.log(trc20Transaction);
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
       orgId: process.env.LEVAIN_ORG_ID as string,
       walletId,
+      networkAssetId: 'a0012465-6331-4284-9a65-80dce837e5ba', // TRX on Tron Shasta Testnet
       transactionData: {
         tron: {
-          json: trc20Transaction.tron.json,
+          json: trxTransaction.tron.json,
         },
       },
     });
