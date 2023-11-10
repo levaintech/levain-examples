@@ -16,7 +16,6 @@ router.get('/deposit-addresses', async (req, res) => {
     for (let i = 0; i < 10; i++) {
       const randomUserId = Math.floor(Math.random() * 100000000);
       const depositAddress = await createWalletDepositAddress({
-        orgId: process.env.LEVAIN_ORG_ID as string,
         walletId: walletId as string,
         label: `user-id-${randomUserId}`,
         caip2Uri: '',

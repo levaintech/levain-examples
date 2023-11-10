@@ -3,7 +3,6 @@ import { gql } from '@apollo/client/core';
 import { client } from './graphql';
 
 export interface CreateTransactionRequestInput {
-  orgId: string;
   walletId: string;
   networkAssetId?: string | null;
   transactionData: NewTransactionRequestData;

@@ -38,7 +38,6 @@ router.get('/process-tx', async (req, res) => {
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
-      orgId: process.env.LEVAIN_ORG_ID as string,
       walletId: process.env.LEVAIN_OPS_TRADING_WALLET_ID as string,
       transactionData: {
         // Wallets created using SimpleMultiSig.sol must use simpleMultiSig -- Safe implementation will be announced soon
@@ -67,8 +66,6 @@ router.get('/process-tx', async (req, res) => {
 
     // Create transaction digests using the requestId
     const createTxDigests = await createTransactionDigests({
-      orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId: process.env.LEVAIN_OPS_TRADING_WALLET_ID as string,
       requestId: createTxRequest.requestId,
     });
 
@@ -92,8 +89,6 @@ router.get('/process-tx', async (req, res) => {
 
     // Submit the signed transaction to Levain to co-sign to get the other signature
     const executedTx = await executeTransaction({
-      orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId: process.env.LEVAIN_OPS_TRADING_WALLET_ID as string,
       requestId: createTxRequest.requestId,
       signature: signatureWithoutV,
     });

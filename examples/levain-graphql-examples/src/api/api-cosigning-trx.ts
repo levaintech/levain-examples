@@ -52,7 +52,6 @@ router.get('/process-withdrawal-trx', async (req, res) => {
 
     // Create tx request via Levain from Ops Withdrawal Hot Wallet to the user's wallet
     const createTxRequest = await createTransactionRequest({
-      orgId: process.env.LEVAIN_ORG_ID as string,
       walletId,
       networkAssetId: 'a0012465-6331-4284-9a65-80dce837e5ba', // TRX on Tron Shasta Testnet
       transactionData: {
@@ -74,8 +73,6 @@ router.get('/process-withdrawal-trx', async (req, res) => {
 
     // Create transaction digests using the requestId
     const createTxDigests = await createTransactionDigests({
-      orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId,
       requestId: createTxRequest.requestId,
     });
 
@@ -99,8 +96,6 @@ router.get('/process-withdrawal-trx', async (req, res) => {
 
     // Submit the signed transaction to Levain to co-sign and execute for us, gas estimation is handled by Levain and funds are drawn from the gas tank
     const executedTx = await executeTransaction({
-      orgId: process.env.LEVAIN_ORG_ID as string,
-      walletId,
       requestId: createTxRequest.requestId,
       signature: signatureWithoutV,
     });
