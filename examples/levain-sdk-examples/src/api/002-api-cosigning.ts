@@ -1,6 +1,6 @@
 import express from 'express';
 import { levainGraph } from './client';
-import { requireValue } from './utils';
+import { config } from './config';
 
 const router = express.Router();
 
@@ -20,14 +20,8 @@ router.get('/process-withdrawal', async (req, res) => {
 
     const withdrawalAddress = req.query.address;
 
-    const walletId = requireValue(
-      process.env.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID,
-      '`LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID` env var has not been set',
-    );
-    const walletPassword = requireValue(
-      process.env.LEVAIN_USER_SIGNING_KEY_PASSWORD,
-      '`LEVAIN_USER_SIGNING_KEY_PASSWORD` env var has not been set',
-    );
+    const walletId = config.LEVAIN_OPS_WITHDRAWAL_HOT_WALLET_ID;
+    const walletPassword = config.LEVAIN_USER_SIGNING_KEY_PASSWORD;
 
     // Create Transaction
     const txRequest = await levainGraph.sendAsset({
