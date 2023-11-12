@@ -5,10 +5,14 @@ import txWith0xRoute from './api/003-api-cosigning-custom-tx';
 import depositAddressRoute from './api/004-generate-deposit-addresses';
 
 import { config } from 'dotenv';
+import { join } from 'node:path';
 
-config();
+config({
+  path: join(__dirname, '..', '.env.example'),
+});
+
 const app = express();
-const port = 3000;
+const port = 8000;
 
 app.get('/', async (req, res) => {
   try {

@@ -1,7 +1,7 @@
 import express from 'express';
 import { levainGraph } from './client';
 import { WalletType } from '@levain/wallet-sdk';
-import { requireValue } from './utils';
+import { config } from './config';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/create-wallet', async (req, res) => {
   try {
     const { keys, wallet } = await levainGraph.createKeysAndWallet({
-      orgId: requireValue(process.env.LEVAIN_ORG_ID, '`LEVAIN_ORG_ID` env var has not been set'),
+      orgId: config.LEVAIN_ORG_ID,
       type: WalletType.EvmContractSimpleMultiSig,
       name: 'Sepolia Test Wallet',
       network: 'caip2:eip155:11155111',
