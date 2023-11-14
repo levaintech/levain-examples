@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "@types/prompts": "^2.4.8",
-    "@types/validate-npm-package-name": "^4.0.1"
+    "@types/validate-npm-package-name": "^4.0.2"
   }
 }
