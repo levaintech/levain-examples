@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@levain-examples/examples": "workspace:*",
-    "@types/pacote": "^11.1.7",
+    "@types/pacote": "^11.1.8",
     "execa": "^5.1.1",
     "pacote": "^17.0.4",
     "picocolors": "^1.0.0",
