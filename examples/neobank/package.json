@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@heroicons/react": "latest",
+    "@levain/wallet-sdk": "^20.0.0",
     "clsx": "latest",
+    "graphql-request": "^6.1.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
