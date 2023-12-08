@@ -1,19 +1,20 @@
 import { ReactElement, ReactNode } from 'react';
 import { ActiveLink } from '@/components/ActiveLink';
 
-export default function WalletLayout(props: { children: ReactNode }): ReactElement {
+export default function WalletLayout(props: {
+  children: ReactNode;
+  params: {
+    walletId: string;
+  };
+}): ReactElement {
   const links = [
     {
-      href: '/',
+      href: `/wallets/${props.params.walletId}`,
       label: 'Wallet Overview',
     },
     {
-      href: '/deposit-addresses',
+      href: `/wallets/${props.params.walletId}/deposit-addresses`,
       label: 'Deposit Addresses',
-    },
-    {
-      href: '/events',
-      label: 'Events',
     },
   ];
 

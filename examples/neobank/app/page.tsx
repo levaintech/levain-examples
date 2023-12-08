@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { StyledTable } from '@/components/StyledTable';
 
 import { createGraphClient } from '@/components/RequestGraph';
+import { JumbotronHeader } from '@/components/Jumbotron';
 
 export default async function WalletPage(): Promise<ReactElement> {
   const graphClient = createGraphClient();
@@ -18,6 +19,7 @@ export default async function WalletPage(): Promise<ReactElement> {
             node {
               name
               mainAddress
+              walletId
               organizationNetwork {
                 network {
                   identifier
@@ -35,15 +37,15 @@ export default async function WalletPage(): Promise<ReactElement> {
   return (
     <main className="mx-auto my-6 w-full max-w-screen-xl px-6 lg:my-10 lg:px-10">
       <div className="border-mono-50 border">
-        <div className="p-5">
-          <h2>Omnibus Wallets</h2>
+        <div className="flex flex-wrap items-center justify-between p-5">
+          <div className="text-xl">Omnibus Wallets</div>
         </div>
         <StyledTable>
           <thead>
             <tr>
               <th>Name</th>
               <th>Blockchain CAIP2 Identifier</th>
-              <th>Link to Scan</th>
+              <th>Address</th>
               <th></th>
             </tr>
           </thead>
@@ -59,8 +61,11 @@ export default async function WalletPage(): Promise<ReactElement> {
                     <td>{node.mainAddress}</td>
                     <td>
                       <div className="flex">
-                        <Link href="" className="border-mono-50 block border px-4 py-1 font-bold">
-                          Send
+                        <Link
+                          href={`/wallets/${node.walletId}`}
+                          className="border-mono-50 block border px-4 py-1 font-bold"
+                        >
+                          View
                         </Link>
                       </div>
                     </td>
