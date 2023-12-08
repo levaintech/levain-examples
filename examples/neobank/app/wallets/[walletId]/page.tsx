@@ -2,8 +2,7 @@
 
 import { ReactElement } from 'react';
 import { FormGroup, FormGroupButton, FormGroupField, FormGroupFieldSelect } from '@/components/forms/FormGroup';
-import { Jumbotron, JumbotronHeader, JumbotronRow } from '@/components/Jumbotron';
-import Link from 'next/link';
+import { Jumbotron, JumbotronRow } from '@/components/Jumbotron';
 
 export default function WalletOverviewPage(): ReactElement {
   return (

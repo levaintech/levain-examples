@@ -1,10 +1,7 @@
 import { ReactElement } from 'react';
-import Link from 'next/link';
 import { StyledTable } from '@/components/StyledTable';
 
 import { createGraphClient } from '@/components/RequestGraph';
-import { createSdkClient } from '@/components/RequestSdk';
-import { useRouter } from 'next/navigation';
 import CreateDepositAddressButton from '@/app/wallets/[walletId]/deposit-addresses/CreateDepositAddressButton';
 
 export default async function WalletPage(props: {
