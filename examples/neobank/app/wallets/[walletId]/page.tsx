@@ -1,15 +1,14 @@
 import React, { ReactElement } from 'react';
 import { Jumbotron, JumbotronHeader, JumbotronRow } from '@/components/Jumbotron';
 import { createGraphClient } from '@/components/RequestGraph';
-import { FormGroupField } from '@/components/forms/FormGroup';
-import { Field } from 'formik';
+import bignumber from 'bignumber.js';
 import clsx from 'clsx';
-
+import { StyledTable } from '@/components/StyledTable';
 export default async function WalletOverviewPage(props: {
   params: {
     walletId: string;
   };
-}): ReactElement {
+}): Promise<ReactElement> {
   const graphClient = createGraphClient();
 
   const response: any = await graphClient.request(`
@@ -25,9 +24,15 @@ export default async function WalletOverviewPage(props: {
             identifier
           }
         }
-        depositAddresses {
-          totalCount
+         balances {
+        items {
+        symbol
+        name
+          balanceBase
+          caip19Id
+          decimals
         }
+      }
       }
     }
 `);
@@ -51,11 +56,37 @@ export default async function WalletOverviewPage(props: {
             <WalletDetail label="Network" value={wallet.organizationNetwork.network.protocolName} />
             <WalletDetail label="CAIP-2 Identifier" value={wallet.organizationNetwork.network.identifier} />
           </JumbotronRow>
-          <JumbotronRow />
-          <JumbotronRow>
-            <WalletDetail label="No. of Deposit Addresses" value={wallet.depositAddresses.totalCount} />
-          </JumbotronRow>
         </Jumbotron>
+        <div className="border-mono-50 mb-20 mt-5 border">
+          <div className="flex flex-wrap items-center justify-between p-5">
+            <div className="text-xl">Balances</div>
+          </div>
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>Asset</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {wallet.balances.items.map((item: any) => {
+                const value = bignumber(item.balanceBase).div(bignumber(10).pow(item.decimals));
+
+                return (
+                  <>
+                    <tr id={item.caip19Id}>
+                      <td>{item.symbol}</td>
+                      <td>
+                        {value.toFixed(6)} {item.symbol}
+                      </td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+          </StyledTable>
+        </div>
       </div>
     </div>
   );

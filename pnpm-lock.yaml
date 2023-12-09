@@ -139,6 +139,9 @@ importers:
       '@levain/wallet-sdk':
         specifier: ^20.0.0
         version: 20.0.0(graphql@16.8.1)(typescript@5.2.2)
+      bignumber.js:
+        specifier: 9.1.2
+        version: 9.1.2
       clsx:
         specifier: 2.0.0
         version: 2.0.0
