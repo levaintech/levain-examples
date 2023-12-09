@@ -5,8 +5,18 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "format": "prettier --write .",
     "start": "next start"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@stickyjs/prettier",
   "dependencies": {
     "@heroicons/react": "2.0.18",
     "@levain/wallet-sdk": "^20.0.0",

@@ -27,7 +27,7 @@ export default function CreateDepositAddressButton(props: { walletId: string }):
   return (
     <button
       disabled={isLoading}
-      className="border-mono-50 hover:cursor-pointere group inline-flex items-center justify-center border px-5 py-3 font-bold disabled:cursor-progress"
+      className="hover:cursor-pointere group inline-flex items-center justify-center border border-mono-50 px-5 py-3 font-bold disabled:cursor-progress"
       onClick={handleCreateAddress}
     >
       <span className="opacity-100 group-disabled:opacity-0">Create Deposit Address</span>

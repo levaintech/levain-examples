@@ -19,6 +19,15 @@ const securityHeaders = [
   },
 ];
 
-const nextConfig = {};
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ];
+  },
+};
 
 module.exports = nextConfig;

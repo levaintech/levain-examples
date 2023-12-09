@@ -52,9 +52,9 @@ function InputBoxesView(props: { maxLength: number; value?: string }): ReactElem
         <div key={i} className={clsx('box-border h-[3.25rem] w-full')}>
           <div
             className={clsx(
-              'bg-invert/5 text-mono-50 flex h-full w-full items-center justify-center rounded text-lg font-semibold',
+              'flex h-full w-full items-center justify-center rounded bg-invert/5 text-lg font-semibold text-mono-50',
               {
-                'group-focus-within:border-mono-50 group-focus-within:border':
+                'group-focus-within:border group-focus-within:border-mono-50':
                   i === length || (i === length - 1 && props.maxLength === length),
               },
             )}

@@ -20,12 +20,12 @@ export default function WalletLayout(props: {
 
   return (
     <div className="mx-auto w-full max-w-screen-xl px-6 lg:px-10">
-      <div className="border-b-mono-800 mt-5 flex gap-4 border-b">
+      <div className="mt-5 flex gap-4 border-b border-b-mono-800">
         {links.map((link) => (
           <ActiveLink
             key={link.href}
             href={link.href}
-            className="text-mono-500 block px-2 pb-2.5 pt-3 text-sm font-bold"
+            className="block px-2 pb-2.5 pt-3 text-sm font-bold text-mono-500"
             activeClassName="!text-mono-50 border-b-2 border-b-mono-50"
           >
             {link.label}
