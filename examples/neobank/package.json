@@ -5,14 +5,28 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "format": "prettier --write .",
     "start": "next start"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@stickyjs/prettier",
   "dependencies": {
-    "@heroicons/react": "latest",
-    "clsx": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@heroicons/react": "2.0.18",
+    "@levain/wallet-sdk": "^20.0.0",
+    "bignumber.js": "9.1.2",
+    "clsx": "2.0.0",
+    "formik": "2.4.5",
+    "graphql-request": "^6.1.0",
+    "next": "14.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/node": "latest",
@@ -20,6 +34,7 @@
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "postcss": "latest",
+    "source-map-support": "0.5.21",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
