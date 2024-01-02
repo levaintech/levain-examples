@@ -16,6 +16,18 @@
     {
       "matchPackagePatterns": ["^@contentedjs/"],
       "groupName": "@contentedjs"
+    },
+    {
+      "matchPackagePatterns": ["^@eslint/", "^eslint$"],
+      "groupName": "@eslint"
+    },
+    {
+      "matchPackagePatterns": ["^@crypto-frontmatter/", "^crypto-frontmatter$"],
+      "groupName": "@crypto-frontmatter"
+    },
+    {
+      "matchPackagePatterns": ["^@stickyjs/"],
+      "groupName": "@stickyjs"
     }
   ]
 }
