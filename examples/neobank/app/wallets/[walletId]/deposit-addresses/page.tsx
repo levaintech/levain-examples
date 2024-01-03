@@ -11,7 +11,7 @@ export default async function WalletPage(props: {
 }): Promise<ReactElement> {
   const graphClient = createGraphClient();
 
-  const response: any = await graphClient.request(`
+  const response: any = await graphClient.request(/*GraphQL*/ `
     query WalletDepositAddressQuery {
       wallet(walletId: "${props.params.walletId}") {
         name
@@ -27,7 +27,7 @@ export default async function WalletPage(props: {
         }
       }
     }
-`);
+  `);
 
   const wallet = response.wallet;
 
