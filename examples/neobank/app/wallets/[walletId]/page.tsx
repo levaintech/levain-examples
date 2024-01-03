@@ -4,6 +4,7 @@ import { createGraphClient } from '@/components/RequestGraph';
 import bignumber from 'bignumber.js';
 import clsx from 'clsx';
 import { StyledTable } from '@/components/StyledTable';
+
 export default async function WalletOverviewPage(props: {
   params: {
     walletId: string;
@@ -11,7 +12,7 @@ export default async function WalletOverviewPage(props: {
 }): Promise<ReactElement> {
   const graphClient = createGraphClient();
 
-  const response: any = await graphClient.request(`
+  const response: any = await graphClient.request(/*GraphQL*/ `
     query WalletOverviewQuery {
       wallet(walletId: "${props.params.walletId}") {
         name
@@ -24,7 +25,7 @@ export default async function WalletOverviewPage(props: {
             identifier
           }
         }
-         balances {
+        balances {
           items {
             symbol
             name
@@ -35,7 +36,7 @@ export default async function WalletOverviewPage(props: {
         }
       }
     }
-`);
+  `);
 
   const wallet = response.wallet;
 
