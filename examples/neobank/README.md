@@ -28,16 +28,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 To learn more about [Levain](https://developer.levain.tech/), take a look at the following resources:
 
-- [Levain GraphQL API](https://developer.levain.tech/products/graph/docs/about-graphql) - learn about Levain GraphQL
+- [Levain GraphQL API](https://developer.levain.tech/products/graph) - learn about Levain GraphQL
   API.
 - [Viewer Queries](https://developer.levain.tech/products/graph/docs/user-guides/query-viewer) - learn about Viewer
   Queries.
 - [Organization Queries](https://developer.levain.tech/products/graph/docs/user-guides/query-organization) - learn about
   Organization Queries.
-- [Wallet API](https://developer.levain.tech/products/graph/docs/features/wallets) - learn about Wallet API.
-- [Deposit Address API](https://developer.levain.tech/products/graph/docs/features/deposit-address) - learn about
+- [Wallet API](https://developer.levain.tech/products/graph/docs/developer-guides/wallets) - learn about Wallet API.
+- [Deposit Address API](https://developer.levain.tech/products/graph/docs/developer-guides/deposit-address) - learn about
   Deposit Address API.
-- [Transaction API](https://developer.levain.tech/products/graph/docs/features/transactions) - learn about Transaction
+- [Transaction API](https://developer.levain.tech/products/graph/docs/developer-guides/transactions) - learn about Transaction
   API.
 
 ### Next.js
