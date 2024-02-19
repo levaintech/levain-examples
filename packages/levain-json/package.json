@@ -30,6 +30,6 @@
     ]
   },
   "devDependencies": {
-    "typescript-json-schema": "^0.62.0"
+    "typescript-json-schema": "^0.63.0"
   }
 }
