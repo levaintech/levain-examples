@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { requireValue } from './utils';
 
 dotenv.config({
-  path: join(__dirname, '..', '..', '.env.example'),
+  path: join(__dirname, '..', '..', '.env'),
 });
 
 export const config = {
