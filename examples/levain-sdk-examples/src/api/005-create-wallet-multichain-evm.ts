@@ -21,40 +21,25 @@ router.get('/create-wallet-multichain-evm', async (req, res) => {
     const salt = crypto.randomBytes(32).toString('hex'); // Used for wallet creation for deterministic address across EVM chains; 32 bytes = 64 char
 
     // Create the user signing key & backup key
-    const signingKeyPair = generate(walletPassword);
-    const backupKeyPair = generate(walletPassword);
-
-    console.log('Please backup the following together with your wallet password');
-    console.log('Created user signing key:');
-    console.log(signingKeyPair);
-    console.log(JSON.stringify(signingKeyPair, null, 2));
-    console.log('Created user backup key:');
-    console.log(signingKeyPair);
-
-    console.log(
-      'Salt used (please keep this so that you can deploy a multi-sig wallet with the same address across other chains):',
-    );
-    console.log(`0x${salt}`);
-
-    for (let i = 0; i < networksCaip2Ids.length; i++) {
-      // Submit the public keys to Levain
-      const signingKey = await levainGraph.createKey({
+      // Generate and submit the public keys to Levain
+      const { main, backup, encryption } = await levainGraph.createKeys({
         orgId,
-        type: KeyType.ScalarNeutered,
-        publicKey: signingKeyPair.publicKey,
-        retrieveIfExists: false,
+        walletPassword: params.walletPassword,
       });
-      const backupKey = await levainGraph.createKey({
-        orgId,
-        type: KeyType.ScalarNeutered,
-        publicKey: backupKeyPair.publicKey,
-        retrieveIfExists: false,
-      });
-      const walletPasswordEncryptionKey = await levainGraph.createKey({
-        orgId,
-        type: KeyType.Rsa,
-        retrieveIfExists: false,
-      });
+      
+      // IMPORTANT - Save the generated keys in secure storage
+      console.log('Please backup the following together with your wallet password');
+      console.log('Created user signing key:');
+      console.log(signingKeyPair);
+      console.log(JSON.stringify(signingKeyPair, null, 2));
+      console.log('Created user backup key:');
+      console.log(signingKeyPair);
+  
+      // And the salt value depending on your use case
+      console.log(
+        'Salt used (please keep this so that you can deploy a multi-sig wallet with the same address across other chains):',
+      );
+      console.log(`0x${salt}`);
 
       const wallet = await levainGraph.createWallet({
         orgId,
