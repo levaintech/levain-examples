@@ -29,7 +29,8 @@ router.get('/create-wallet-multichain-evm', async (req, res) => {
     console.log(signingKeyPair);
     console.log(JSON.stringify(signingKeyPair, null, 2));
     console.log('Created user backup key:');
-    console.log(signingKeyPair);
+    console.log(backupKeyPair);
+    console.log(JSON.stringify(backupKeyPair, null, 2));
 
     console.log(
       'Salt used (please keep this so that you can deploy a multi-sig wallet with the same address across other chains):',
