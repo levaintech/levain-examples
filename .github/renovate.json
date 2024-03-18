@@ -9,11 +9,6 @@
   "rangeStrategy": "bump",
   "packageRules": [
     {
-      "matchPackageNames": ["node", "npm", "pnpm", "yarn", "typescript", "@types/node"],
-      "groupName": "engines",
-      "enabled": false
-    },
-    {
       "matchPackagePatterns": ["^@contentedjs/"],
       "groupName": "@contentedjs"
     },
