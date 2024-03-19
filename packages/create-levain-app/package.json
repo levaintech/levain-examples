@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@levain-examples/examples": "workspace:*",
-    "@types/pacote": "^11.1.8",
     "execa": "^5.1.1",
     "pacote": "^17.0.6",
     "picocolors": "^1.0.0",
@@ -47,6 +46,7 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
+    "@types/pacote": "^11.1.8",
     "@types/prompts": "^2.4.9",
     "@types/validate-npm-package-name": "^4.0.2"
   }

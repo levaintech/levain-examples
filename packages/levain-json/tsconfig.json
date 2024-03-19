@@ -1,6 +1,0 @@
-{
-  "extends": "@stickyjs/typescript",
-  "compilerOptions": {
-    "rootDir": "./"
-  }
-}
