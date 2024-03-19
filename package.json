@@ -12,14 +12,22 @@
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
   },
-  "prettier": "@stickyjs/prettier",
+  "prettier": "@workspace/prettier-config",
   "devDependencies": {
-    "@stickyjs/eslint-config": "1.3.10",
-    "@stickyjs/prettier": "1.3.10",
-    "@stickyjs/turbo": "1.3.10",
-    "@stickyjs/typescript": "1.3.10",
+    "@jest/globals": "^29.7.0",
+    "@swc/core": "^1.4.8",
+    "@swc/jest": "^0.2.36",
+    "@types/node": "^18.19.25",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/prettier-config": "workspace:*",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "jest": "29.7.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
     "turbo": "^1.12.5",
-    "typescript": "5.3.3"
+    "typescript": "5.3.3",
+    "wait-for-expect": "^3.0.2"
   },
   "packageManager": "pnpm@8.15.5",
   "engines": {

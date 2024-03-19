@@ -69,7 +69,8 @@ export class ProjectProgram {
     return {
       path: res.path,
       version,
-      template: ExampleIndex.find((example) => example.fields.template?.packageName === res.packageName)?.fields
+      template: ExampleIndex
+        .find((example) => example.fields.template?.packageName === res.packageName)?.fields
         .template!,
     };
   }

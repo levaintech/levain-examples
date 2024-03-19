@@ -5,8 +5,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/pnpm-lock.yaml" />
       <excludeFolder url="file://$MODULE_DIR$/examples/.contented" />
-      <excludePattern pattern="*.turbo" />
-      <excludePattern pattern="*dist" />
+      <excludeFolder url="file://$MODULE_DIR$/.husky" />
+      <excludePattern pattern=".turbo" />
+      <excludePattern pattern="dist" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

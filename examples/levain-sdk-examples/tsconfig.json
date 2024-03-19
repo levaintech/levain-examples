@@ -1,5 +1,5 @@
 {
-  "extends": "@stickyjs/typescript",
+  "extends": "@workspace/tsconfig",
   "compilerOptions": {
     "rootDir": "./src"
   }
