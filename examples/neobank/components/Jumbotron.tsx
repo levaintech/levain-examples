@@ -12,15 +12,15 @@ import React, { ComponentProps, ReactElement, ReactNode } from 'react';
  * @see FormGroup
  */
 export function Jumbotron(props: { children: ReactNode; className?: string }): ReactElement {
-  return <div className={clsx('w-full border border-mono-50', props.className)}>{props.children}</div>;
+  return <div className={clsx('border-mono-50 w-full border', props.className)}>{props.children}</div>;
 }
 
 export function JumbotronHeader(props: { title: string; children?: ReactNode }): ReactElement {
   const anchor = props.title.toLowerCase().replace(/([^a-zA-Z0-9])/g, '-');
   return (
-    <div className="flex items-center border-b border-mono-50 p-5 [&_>]:shrink-0">
+    <div className="border-mono-50 flex items-center border-b p-5 [&_>]:shrink-0">
       <div className="flex-grow">
-        <h3 id={anchor} className="text-xl font-normal text-mono-50">
+        <h3 id={anchor} className="text-mono-50 text-xl font-normal">
           {props.title}
         </h3>
       </div>
@@ -41,7 +41,7 @@ export function JumbotronRowParagraph(props: {
   return (
     <p
       className={clsx(
-        'text-sm text-mono-400',
+        'text-mono-400 text-sm',
         {
           'col-span-2': props.span === 2 || props.span === undefined,
           'col-span-1': props.span === 1,
@@ -56,7 +56,7 @@ export function JumbotronRowParagraph(props: {
 
 export function JumbotronRowList(props: { children?: ReactNode; className?: string }): ReactElement {
   return (
-    <ul role="list" className={clsx('list-disc space-y-1 pl-5 text-sm text-mono-400', props.className)}>
+    <ul role="list" className={clsx('text-mono-400 list-disc space-y-1 pl-5 text-sm', props.className)}>
       {props.children}
     </ul>
   );
@@ -68,8 +68,8 @@ export function JumbotronRowListItem(props: { children?: ReactNode; className?: 
 
 export function JumbotronFooter(props: { description?: ReactNode | string; children?: ReactNode }): ReactElement {
   return (
-    <div className="flex items-center justify-between gap-5 border-t border-t-mono-800 px-5 py-2">
-      <p className={clsx('py-1 text-sm leading-snug text-mono-400')}>{props.description}</p>
+    <div className="border-t-mono-800 flex items-center justify-between gap-5 border-t px-5 py-2">
+      <p className={clsx('text-mono-400 py-1 text-sm leading-snug')}>{props.description}</p>
       {props.children}
     </div>
   );
@@ -85,7 +85,7 @@ export function JumbotronLink(
     <Link
       {...rest}
       className={clsx(
-        'relative block shrink-0 rounded bg-mono-50 px-7 py-3 text-sm font-semibold text-mono-950',
+        'bg-mono-50 text-mono-950 relative block shrink-0 rounded px-7 py-3 text-sm font-semibold',
         'before:absolute before:inset-0 before:rounded',
         'hover:before:bg-mono-900/20',
         'focus:before:bg-mono-900/20',

@@ -33,7 +33,7 @@ export default async function WalletPage(props: {
 
   return (
     <main className="mx-auto my-6 w-full max-w-screen-xl px-6 lg:my-10 lg:px-10">
-      <div className="border border-mono-50">
+      <div className="border-mono-50 border">
         <div className="flex flex-wrap items-center justify-between p-5">
           <div className="text-xl">Deposit Addresses</div>
           <CreateDepositAddressButton walletId={props.params.walletId} />
@@ -63,7 +63,7 @@ export default async function WalletPage(props: {
             })}
           </tbody>
         </StyledTable>
-        <div className="border-t border-mono-50 px-5 py-2.5 text-sm">
+        <div className="border-mono-50 border-t px-5 py-2.5 text-sm">
           Total Records: {wallet.depositAddresses.totalCount}
         </div>
       </div>

@@ -11,12 +11,12 @@ export function StyledTable(props: { children: ReactNode[] }): ReactElement {
       <table
         className={clsx(
           'min-w-full',
-          'whitespace-nowrap text-left text-sm text-mono-400 lg:whitespace-normal',
-          '[&_tr_:is(td)]:font-normal [&_tr_:is(th)]:font-bold [&_tr_:is(th)]:text-mono-50',
+          'text-mono-400 whitespace-nowrap text-left text-sm lg:whitespace-normal',
+          '[&_tr_:is(th)]:text-mono-50 [&_tr_:is(td)]:font-normal [&_tr_:is(th)]:font-bold',
           '[&_tr_:is(th,td)]:py-3',
           '[&_tr_:is(th,td)]:px-5',
-          '[&_thead]:border-y [&_thead]:border-mono-50',
-          '[&_tbody]:divide-y [&_tbody]:divide-mono-800',
+          '[&_thead]:border-mono-50 [&_thead]:border-y',
+          '[&_tbody]:divide-mono-800 [&_tbody]:divide-y',
         )}
       >
         {props.children}

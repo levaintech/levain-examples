@@ -59,7 +59,7 @@ export function FormGroup<Values extends FormikValues = FormikValues>(
 export function FormGroupDebugger(): ReactElement {
   const formikContext = useFormikContext();
   return (
-    <div className="m-5 rounded bg-invert/5 p-3 text-xs">
+    <div className="bg-invert/5 m-5 rounded p-3 text-xs">
       <pre>{JSON.stringify(formikContext, null, 2)}</pre>
     </div>
   );
@@ -100,7 +100,7 @@ export function FormGroupButton(
       data-submit-count={formikContext.submitCount}
       disabled={!formikContext.isValid || (validateDirty && !formikContext.dirty) || formikContext.isSubmitting}
       className={clsx(
-        'relative shrink-0 bg-mono-50 px-7 py-3 text-sm font-semibold text-mono-950',
+        'bg-mono-50 text-mono-950 relative shrink-0 px-7 py-3 text-sm font-semibold',
         'disabled:cursor-not-allowed disabled:opacity-30',
         'before:absolute before:inset-0',
         'hover:before:bg-mono-900/20',
@@ -133,14 +133,14 @@ export function FormGroupField(
 
   return (
     <div className={className}>
-      <label className="block select-none text-sm text-mono-400">
+      <label className="text-mono-400 block select-none text-sm">
         {label}
         <Field
           name={name}
           aria-invalid={!!(meta.error && meta.touched)}
           className={clsx(
-            'mt-3 w-full rounded border-none bg-invert/5 px-4 py-3 text-sm text-mono-50',
-            'focus:ring-1 focus:ring-mono-50',
+            'bg-invert/5 text-mono-50 mt-3 w-full rounded border-none px-4 py-3 text-sm',
+            'focus:ring-mono-50 focus:ring-1',
             'aria-invalid:ring-1 aria-invalid:ring-red-500',
             'disabled:text-mono-500',
             fieldClassName,
@@ -165,7 +165,7 @@ export function FormGroupInputBoxes(
 
   return (
     <div className={className}>
-      <label className="block select-none text-sm text-mono-400">
+      <label className="text-mono-400 block select-none text-sm">
         {label}
         <InputBoxes
           maxLength={props.maxLength ?? 6}
@@ -193,14 +193,14 @@ export function FormGroupFieldCheckbox(
   const { label, name, className, ...attributes } = props;
 
   return (
-    <div className={clsx('text-sm text-mono-400', className)}>
+    <div className={clsx('text-mono-400 text-sm', className)}>
       <label className="flex cursor-pointer select-none items-center gap-2.5">
         <Field name={name} aria-invalid={!!meta.error} className="absolute opacity-0" {...attributes} />
         <CheckIcon
           data-value={field.value}
           data-disabled={attributes.disabled}
           className={clsx(
-            'box-border h-5 w-5 shrink-0 rounded border border-mono-400 stroke-current stroke-[3px] p-[2px] text-transparent',
+            'border-mono-400 box-border h-5 w-5 shrink-0 rounded border stroke-current stroke-[3px] p-[2px] text-transparent',
             'data-[value=true]:border-mono-50 data-[value=true]:bg-mono-50 data-[value=true]:text-mono-800',
             'data-[disabled=true]:opacity-30',
           )}
@@ -223,15 +223,15 @@ export function FormGroupFieldSelect(
 
   return (
     <div className={className}>
-      <label className="block select-none text-sm text-mono-400">
+      <label className="text-mono-400 block select-none text-sm">
         {label}
         <Field
           as="select"
           name={name}
           aria-invalid={!!(meta.error && meta.touched)}
           className={clsx(
-            'mt-3 w-full rounded border-none bg-invert/5 px-4 py-3 text-sm text-mono-50 placeholder:text-mono-500',
-            'focus:ring-1 focus:ring-mono-50',
+            'bg-invert/5 text-mono-50 placeholder:text-mono-500 mt-3 w-full rounded border-none px-4 py-3 text-sm',
+            'focus:ring-mono-50 focus:ring-1',
             'aria-invalid:ring-1 aria-invalid:ring-red-500',
           )}
           {...attributes}

@@ -16,7 +16,6 @@
       "prettier --write"
     ]
   },
-  "prettier": "@stickyjs/prettier",
   "dependencies": {
     "@heroicons/react": "2.0.18",
     "@levain/wallet-sdk": "^20.0.0",
