@@ -21,7 +21,7 @@ export default function RootLayout(props: { children: ReactNode }): ReactElement
         <div className="mx-auto mt-6 w-full max-w-screen-xl px-6 lg:mt-10 lg:px-10">
           <div className="flex justify-between">
             <Link href="/">
-              <h1 className="text-3xl font-bold text-mono-50">Levain NeoBank</h1>
+              <h1 className="text-mono-50 text-3xl font-bold">Levain NeoBank</h1>
             </Link>
             <ThemeSelector />
           </div>

@@ -36,7 +36,7 @@ export default async function WalletPage(): Promise<ReactElement> {
 
   return (
     <main className="mx-auto my-6 w-full max-w-screen-xl px-6 lg:my-10 lg:px-10">
-      <div className="border border-mono-50">
+      <div className="border-mono-50 border">
         <div className="flex flex-wrap items-center justify-between p-5">
           <div className="text-xl">Omnibus Wallets</div>
         </div>
@@ -63,7 +63,7 @@ export default async function WalletPage(): Promise<ReactElement> {
                       <div className="flex">
                         <Link
                           href={`/wallets/${node.walletId}`}
-                          className="block border border-mono-50 px-4 py-1 font-bold"
+                          className="border-mono-50 block border px-4 py-1 font-bold"
                         >
                           View
                         </Link>
@@ -75,7 +75,7 @@ export default async function WalletPage(): Promise<ReactElement> {
             })}
           </tbody>
         </StyledTable>
-        <div className="border-t border-mono-50 px-5 py-2.5 text-sm">
+        <div className="border-mono-50 border-t px-5 py-2.5 text-sm">
           Total Records: {response.organization.wallets.totalCount}
         </div>
       </div>

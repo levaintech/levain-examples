@@ -58,7 +58,7 @@ export default async function WalletOverviewPage(props: {
             <WalletDetail label="CAIP-2 Identifier" value={wallet.organizationNetwork.network.identifier} />
           </JumbotronRow>
         </Jumbotron>
-        <div className="mb-20 mt-5 border border-mono-50">
+        <div className="border-mono-50 mb-20 mt-5 border">
           <div className="flex flex-wrap items-center justify-between p-5">
             <div className="text-xl">Balances</div>
           </div>
@@ -95,12 +95,12 @@ export default async function WalletOverviewPage(props: {
 
 function WalletDetail(props: { label: string; value: string }): ReactElement {
   return (
-    <div className="block select-none text-sm text-mono-400">
+    <div className="text-mono-400 block select-none text-sm">
       {props.label}
       <div
         className={clsx(
-          'mt-3 w-full rounded border-none bg-invert/5 px-4 py-3 text-sm text-mono-50',
-          'focus:ring-1 focus:ring-mono-50',
+          'bg-invert/5 text-mono-50 mt-3 w-full rounded border-none px-4 py-3 text-sm',
+          'focus:ring-mono-50 focus:ring-1',
           'aria-invalid:ring-1 aria-invalid:ring-red-500',
           'disabled:text-mono-500',
         )}

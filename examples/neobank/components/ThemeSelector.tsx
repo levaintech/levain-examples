@@ -46,7 +46,7 @@ export function ThemeSelector(): ReactElement {
       <button
         type="button"
         className={clsx(
-          'h-7 w-7 rounded p-1.5 text-mono-300 transition hover:bg-invert/5 [&_>]:fill-current',
+          'text-mono-300 hover:bg-invert/5 h-7 w-7 rounded p-1.5 transition [&_>]:fill-current',
           props.className,
         )}
         onClick={props.onClick}

@@ -6,18 +6,21 @@
     "clean": "turbo run clean",
     "format": "prettier --write .",
     "lint": "turbo run lint -- --fix",
-    "prepare": "husky install",
+    "prepare": "husky",
     "write": "turbo run write"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
   },
-  "prettier": "@stickyjs/prettier",
+  "prettier": "@workspace/prettier-config",
   "devDependencies": {
     "@stickyjs/eslint-config": "1.3.10",
-    "@stickyjs/prettier": "1.3.10",
     "@stickyjs/turbo": "1.3.10",
     "@stickyjs/typescript": "1.3.10",
+    "@workspace/prettier-config": "workspace:*",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
     "turbo": "^1.12.5",
     "typescript": "5.3.3"
   },
