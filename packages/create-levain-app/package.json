@@ -31,7 +31,7 @@
       "project": "./tsconfig.json"
     },
     "extends": [
-      "@stickyjs"
+      "@workspace"
     ],
     "rules": {
       "no-console": "off"
