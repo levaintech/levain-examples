@@ -14,10 +14,9 @@
   },
   "prettier": "@workspace/prettier-config",
   "devDependencies": {
-    "@stickyjs/eslint-config": "1.3.10",
-    "@stickyjs/turbo": "1.3.10",
-    "@stickyjs/typescript": "1.3.10",
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/prettier-config": "workspace:*",
+    "@workspace/tsconfig": "workspace:*",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
