@@ -269,7 +269,7 @@ importers:
         specifier: ^14.0.0
         version: 14.0.0
       typescript-eslint:
-        specifier: ^7.2.0
+        specifier: ^7.3.1
         version: 7.3.1(eslint@8.56.0)(typescript@5.4.3)
 
   workspace/prettier-config:
