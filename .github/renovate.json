@@ -9,6 +9,10 @@
   "rangeStrategy": "bump",
   "packageRules": [
     {
+      "matchPackageNames": ["node", "typescript", "@types/node", "@types/react"],
+      "enabled": false
+    },
+    {
       "matchPackagePatterns": ["^@contentedjs/"],
       "groupName": "@contentedjs"
     },
