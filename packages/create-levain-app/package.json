@@ -40,7 +40,7 @@
   "dependencies": {
     "@levain-examples/examples": "workspace:*",
     "execa": "^5.1.1",
-    "pacote": "^17.0.6",
+    "pacote": "^18.0.6",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
     "validate-npm-package-name": "^5.0.0"
